@@ -1,3 +1,5 @@
+* v0.0.20
+  * Fix nested generics.
 * v0.0.19
   * Fix "> (" and "> [" pairs with options spaces.beforeParenthesis=false / spaces.beforeBracket=false.
 * v0.0.18

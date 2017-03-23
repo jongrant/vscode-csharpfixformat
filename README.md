@@ -20,6 +20,15 @@ var test    =        i().  willNotBeFormatted     []   ;
 /* fixformat ignore:end */
 ```
 
+## Release installation
+Use instructions from marketplace.
+
+## Manual installation from sources
+1. Install node.js.
+2. Run "npm install" from project folder.
+3. Run "npm run package" from project folder.
+4. Install brand new packed *.vsix bundle through vscode plugins menu option "Install from VSIX".
+
 ## Extension Settings
 
 * `csharpfixformat.sort.usings.enabled`: Should usings be sorted or not. True by default.
