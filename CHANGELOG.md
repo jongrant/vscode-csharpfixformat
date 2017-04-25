@@ -1,3 +1,5 @@
+* v0.0.21
+  * Fix multiline strings.
 * v0.0.20
   * Fix nested generics.
 * v0.0.19
