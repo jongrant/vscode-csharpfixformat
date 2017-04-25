@@ -3,7 +3,7 @@
   "displayName": "C# FixFormat",
   "description": "Fix format of usings / indents / braces / empty lines",
   "icon": "icon.svg",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "publisher": "Leopotam",
   "engines": {
     "vscode": "^1.9.0"
@@ -150,7 +150,7 @@
   ],
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "compile": "node_modules/.bin/tsc -w -p ./",
+    "watch": "node_modules/.bin/tsc -w",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "package": "node_modules/.bin/vsce package"
   },

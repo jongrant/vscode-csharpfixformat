@@ -2189,45 +2189,6 @@ if (!Object.values) {
                             }
                             input.next();
                         }
-                    } else if (opts.e4x && sep === '<') {
-                        //
-                        // handle e4x xml literals
-                        //
-
-                        var xmlRegExp = /[\s\S]*?<(\/?)([-a-zA-Z:0-9_.]+|{[\s\S]+?}|!\[CDATA\[[\s\S]*?\]\])(\s+{[\s\S]+?}|\s+[-a-zA-Z:0-9_.]+|\s+[-a-zA-Z:0-9_.]+\s*=\s*('[^']*'|"[^"]*"|{[\s\S]+?}))*\s*(\/?)\s*>/g;
-                        input.back();
-                        var xmlStr = '';
-                        var match = input.match(startXmlRegExp);
-                        if (match) {
-                            // Trim root tag to attempt to
-                            var rootTag = match[2].replace(/^{\s+/, '{').replace(/\s+}$/, '}');
-                            var isCurlyRoot = rootTag.indexOf('{') === 0;
-                            var depth = 0;
-                            while (match) {
-                                var isEndTag = !!match[1];
-                                var tagName = match[2];
-                                var isSingletonTag = (!!match[match.length - 1]) || (tagName.slice(0, 8) === "![CDATA[");
-                                if (!isSingletonTag &&
-                                    (tagName === rootTag || (isCurlyRoot && tagName.replace(/^{\s+/, '{').replace(/\s+}$/, '}')))) {
-                                    if (isEndTag) {
-                                        --depth;
-                                    } else {
-                                        ++depth;
-                                    }
-                                }
-                                xmlStr += match[0];
-                                if (depth <= 0) {
-                                    break;
-                                }
-                                match = input.match(xmlRegExp);
-                            }
-                            // if we didn't close correctly, keep unformatted.
-                            if (!match) {
-                                xmlStr += input.match(/[\s\S]*/g)[0];
-                            }
-                            xmlStr = xmlStr.replace(acorn.allLineBreaks, '\n');
-                            return [xmlStr, "TK_STRING"];
-                        }
                     } else {
                         //
                         // handle string
@@ -2278,12 +2239,8 @@ if (!Object.values) {
                                 }
                             }
                         };
-
-                        if (sep === '`') {
-                            parse_string('`', true, '${');
-                        } else {
-                            parse_string(sep);
-                        }
+                        
+                        parse_string(sep, true);
                     }
 
                     if (has_char_escapes && opts.unescape_strings) {
