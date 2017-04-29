@@ -125,7 +125,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             });
 
             // fix string interpolators / escaped strings.
-            content = replaceCode(content, /(\$|@) (?=")/gm, (s, s1) => s1);
+            content = replaceCode(content, /(\$ @|[\$|@]) (?=")/gm, (s, s1) => s1.replace(' ', ''));
 
             // fix colons.
             content = replaceCode(content, /([\w\)\]\>]): (\w)/gm, (s, s1, s2) => `${s1} : ${s2}`);

@@ -1,3 +1,5 @@
+* v0.0.22
+  * Fix escaped template strings.
 * v0.0.21
   * Fix multiline strings.
 * v0.0.20
