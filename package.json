@@ -3,10 +3,10 @@
   "displayName": "C# FixFormat",
   "description": "Fix format of usings / indents / braces / empty lines",
   "icon": "icon.svg",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "publisher": "Leopotam",
   "engines": {
-    "vscode": "^1.9.0"
+    "vscode": "^1.10.0"
   },
   "categories": [
     "Formatters",
