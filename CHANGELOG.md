@@ -1,3 +1,5 @@
+* v0.0.23
+  * Fix C#7 "out var variable" syntax.
 * v0.0.22
   * Fix escaped template strings.
 * v0.0.21
