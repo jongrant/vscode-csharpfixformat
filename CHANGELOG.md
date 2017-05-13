@@ -1,3 +1,5 @@
+* v0.0.24
+  * Fix #pragma definitions.
 * v0.0.23
   * Fix C#7 "out var variable" syntax.
 * v0.0.22
