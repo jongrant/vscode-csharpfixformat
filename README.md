@@ -20,6 +20,19 @@ var test    =        i().  willNotBeFormatted     []   ;
 /* fixformat ignore:end */
 ```
 
+## Known issues
+Multiple nullable declarations cant be placed on same line, like:
+```
+void Test(Type1? a, Type1? b, Type1? c) { }
+```
+Instead of this each declaration should be placed on new line:
+```
+void Test(
+    Type1? a,
+    Type1? b,
+    Type1? c) { }
+```
+
 ## Release installation
 Use instructions from marketplace.
 
