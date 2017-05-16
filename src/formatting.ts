@@ -74,6 +74,12 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             // masking region / endregion directives.
             content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
+            // masking content of interpolated strings.
+            content = content.replace(/(\$"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
+                return s.replace(/\{/g, '__vscode_pp_lerp_start__"+')
+                    .replace(/\}/g, '+"__vscode_pp_lerp_end__');
+            });
+
             // masking content of escaped strings.
             content = content.replace(/(?:[^"\\])"(?:[^"\\]|\\.|"")*"/gm, s => {
                 return s.replace(/([^\\])""/g, '$1__vscode_pp_dq__');
@@ -93,6 +99,10 @@ export const process = (content: string, options: IFormatConfig): IResult => {
 
             // restore masked content of escaped strings.
             content = content.replace(/__vscode_pp_dq__/gm, '""');
+
+            // restore masked content of interpolated strings.
+            content = content.replace(/__vscode_pp_lerp_start__" \+ /gm, s => '{');
+            content = content.replace(/ \+ "__vscode_pp_lerp_end__/gm, s => '}');
 
             // fix number suffixes.
             content = replaceCode(content, /(\d) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3) => `${s1}${s2}${s3}`);
