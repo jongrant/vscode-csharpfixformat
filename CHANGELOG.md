@@ -1,3 +1,5 @@
+* v0.0.25
+  * Fix double quotes inside interpolated strings.
 * v0.0.24
   * Fix #pragma definitions.
 * v0.0.23
