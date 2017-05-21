@@ -1,3 +1,5 @@
+* v0.0.26
+  * Fix for #elif formatting.
 * v0.0.25
   * Fix double quotes inside interpolated strings.
 * v0.0.24
