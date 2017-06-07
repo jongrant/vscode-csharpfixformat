@@ -130,7 +130,16 @@ export const process = (content: string, options: IFormatConfig): IResult => {
                     return s;
                 }
                 const itemIndent = indentMatch![0];
-                const d2 = s2.replace(/^ +/gm, itemIndent);
+                return `${s1}${s2.replace(/^ +/gm, itemIndent)}${s3}`;
+            });
+
+            // fix nested fields initialization.
+            content = replaceCode(content, /(\=[^\{]+\{)((?:.*?\n)*?)(.*?\};$)/gm, (s, s1, s2, s3) => {
+                const indentMatch = /^ +/gm.exec(s2);
+                if (indentMatch == null || indentMatch.length === 0) {
+                    return s;
+                }
+                const itemIndent = indentMatch![0];
                 return `${s1}${s2.replace(/^ +/gm, itemIndent)}${s3}`;
             });
 
