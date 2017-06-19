@@ -1,3 +1,5 @@
+* v0.0.28
+  * Additional fix for nested fields initialization.
 * v0.0.27
   * Fix nested fields initialization.
 * v0.0.26

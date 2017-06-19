@@ -3,7 +3,7 @@
   "displayName": "C# FixFormat",
   "description": "Fix format of usings / indents / braces / empty lines",
   "icon": "icon.svg",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "publisher": "Leopotam",
   "engines": {
     "vscode": "^1.12.0"
@@ -155,9 +155,9 @@
     "package": "node_modules/.bin/vsce package"
   },
   "devDependencies": {
-    "@types/node": "^7.0.28",
-    "typescript": "^2.3.4",
-    "vsce": "^1.19.0",
+    "@types/node": "^7.0.31",
+    "typescript": "^2.4.0",
+    "vsce": "^1.24.0",
     "vscode": "^1.0.0"
   },
   "license": "MIT",
