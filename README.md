@@ -1,5 +1,5 @@
 [![Marketplace](https://vsmarketplacebadge.apphb.com/version-short/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
-[![Installs](http://vsmarketplacebadge.apphb.com/installs/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
 [![Raiting](https://vsmarketplacebadge.apphb.com/rating-short/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
 [![GitHub issues](https://img.shields.io/github/issues/Leopotam/vscode-csharpfixformat.svg)](https://github.com/Leopotam/vscode-csharpfixformat/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Leopotam/vscode-csharpfixformat)
