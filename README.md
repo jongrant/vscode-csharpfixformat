@@ -2,10 +2,13 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs-short/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
 [![Raiting](https://vsmarketplacebadge.apphb.com/rating-short/Leopotam.csharpfixformat.svg)](https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat)
 [![GitHub issues](https://img.shields.io/github/issues/Leopotam/vscode-csharpfixformat.svg)](https://github.com/Leopotam/vscode-csharpfixformat/issues)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Leopotam/vscode-csharpfixformat)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Leopotam/vscode-csharpfixformat/master/LICENSE)
 
 # CSharpFixFormat for Visual Studio Code
 This extension helps to format C# code. When OmniSharp will support all features - will be deprecated.
+
+## Dependencies
+This extension not dependent on any 3dparty extensions (even omnisharp) and works as standalone formatting solution for current C#-file.
 
 ## Features
 All features available through commands menu, context menu in text editor with option "CSharp: Fix format" or through keybinding "ctrl+alt+i" after opening C# file.
@@ -31,6 +34,22 @@ void Test(
     Type1? a,
     Type1? b,
     Type1? c) { }
+```
+
+Multiline initialization for new instance as parameter for method will not be formatted correctly:
+```
+TestMethod (new TestClass {
+    a = 10,
+        b = 20
+});
+```
+Instead of this - split variable declaration and method calling:
+```
+var t = new TestClass {
+    a = 10,
+    b = 20
+};
+TestMethod (t);
 ```
 
 ## Release installation

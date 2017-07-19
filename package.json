@@ -6,7 +6,7 @@
     "default": "icon-128.png"
   },
   "icon": "icon-128.png",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "publisher": "Leopotam",
   "engines": {
     "vscode": "^1.13.0"
@@ -159,10 +159,11 @@
     "package": "node_modules/.bin/vsce package"
   },
   "devDependencies": {
-    "@types/node": "^7.0.34",
+    "@types/node": "^7.0.38",
+    "tslint": "^5.5.0",
     "typescript": "^2.4.1",
     "vsce": "^1.29.0",
-    "vscode": "^1.1.2"
+    "vscode": "^1.1.4"
   },
   "license": "MIT",
   "homepage": "https://github.com/Leopotam/vscode-csharpfixformat",

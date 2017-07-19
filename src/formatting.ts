@@ -134,7 +134,10 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             });
 
             // fix nested fields initialization.
-            content = replaceCode(content, /(\{)((?:[^;]*?\n)+?)(.*?\};)/gm, (s, s1, s2, s3) => {
+            content = replaceCode(content, /(=[^\{}]*?)(\{[^;]*?)(^ *?\};)/gm, (s, s1, s2, s3) => {
+                if (/\s(?!@)(public|private|protected|internal|class|struct|interface)\s/gm .test(s2)) {
+                    return s;
+                }
                 const indentMatch = /^ +/gm.exec(s2);
                 if (indentMatch == null || indentMatch.length === 0) {
                     return s;

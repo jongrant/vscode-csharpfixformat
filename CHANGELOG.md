@@ -1,3 +1,5 @@
+* v0.0.30
+  * Performance fix for nested fields initialization.
 * v0.0.29
   * Compatibility with vscode 1.14 and new marketplace rules.
 * v0.0.28
