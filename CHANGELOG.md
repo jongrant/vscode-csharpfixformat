@@ -1,3 +1,5 @@
+* v0.0.31
+  * Fix commented string templates.
 * v0.0.30
   * Performance fix for nested fields initialization.
 * v0.0.29
