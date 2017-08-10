@@ -36,13 +36,32 @@ const validCodePatterns: RegExp[] = [
     /("(?:[^"\\]|\\.|"")*")/gm
 ];
 
+const validCodeCommentOnlyPatterns: RegExp[] = [
+    /(\/\*\s*?fixformat +ignore:start\s*?\*\/[\s\S]*?\/\*\s*?fixformat +ignore:end\s*?\*\/)/gm,
+    /(\/\*(?:.|\n)*?\*\/)/gm,
+    /(\/\/.*?$)/gm
+];
+
 const validCodePatternString = validCodePatterns.map<string>(r => r.source).join('|');
+
+const validCodeCommentOnlyPatternString = validCodeCommentOnlyPatterns.map<string>(r => r.source).join('|');
 
 const replaceCode = (source: string, condition: RegExp, cb: Func<string, string>): string => {
     const flags = condition.flags.replace(/[gm]/g, '');
     const regexp = new RegExp(`${validCodePatternString}|(${condition.source})`, `gm${flags}`);
     return source.replace(regexp, (s: string, ...args: string[]) => {
         if (s[0] === '"' || s[0] === '\'' || (s[0] === '/' && (s[1] === '/' || s[1] === '*'))) {
+            return s;
+        }
+        return cb(s, ...args.slice(validCodePatterns.length + 1));
+    });
+};
+
+const replaceNonCommentedCode = (source: string, condition: RegExp, cb: Func<string, string>): string => {
+    const flags = condition.flags.replace(/[gm]/g, '');
+    const regexp = new RegExp(`${validCodeCommentOnlyPatternString}|(${condition.source})`, `gm${flags}`);
+    return source.replace(regexp, (s: string, ...args: string[]) => {
+        if (s[0] === '/' && (s[1] === '/' || s[1] === '*')) {
             return s;
         }
         return cb(s, ...args.slice(validCodePatterns.length + 1));
@@ -75,13 +94,13 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
             // masking content of interpolated strings.
-            content = content.replace(/(\$"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
-                return s.replace(/\{/g, '__vscode_pp_lerp_start__"+')
-                    .replace(/\}/g, '+"__vscode_pp_lerp_end__');
+            content = replaceNonCommentedCode(content, /(\$"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
+                return s.replace(/\{/g, '__vscode_pp_lerp_start__" +')
+                    .replace(/\}/g, '+ "__vscode_pp_lerp_end__');
             });
 
             // masking content of escaped strings.
-            content = content.replace(/(?:[^"\\])"(?:[^"\\]|\\.|"")*"/gm, s => {
+            content = replaceNonCommentedCode(content, /(?:[^"\\])"(?:[^"\\]|\\.|"")*"/gm, s => {
                 return s.replace(/([^\\])""/g, '$1__vscode_pp_dq__');
             });
 
@@ -135,7 +154,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
 
             // fix nested fields initialization.
             content = replaceCode(content, /(=[^\{}]*?)(\{[^;]*?)(^ *?\};)/gm, (s, s1, s2, s3) => {
-                if (/\s(?!@)(public|private|protected|internal|class|struct|interface)\s/gm .test(s2)) {
+                if (/\s(?!@)(public|private|protected|internal|class|struct|interface)\s/gm.test(s2)) {
                     return s;
                 }
                 const indentMatch = /^ +/gm.exec(s2);
