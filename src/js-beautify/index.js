@@ -677,7 +677,7 @@ if (!Object.values) {
                     // if (a) if (b) if(c) d(); else e(); else f();
                     if (!start_of_object_property()) {
                         allow_wrap_or_preserved_newline(
-                            current_token.type === 'TK_RESERVED' && in_array(current_token.text, ['do', 'for', 'if', 'while']));
+                            current_token.type === 'TK_RESERVED' && in_array(current_token.text, ['do', 'for', 'foreach', 'if', 'while']));
                     }
 
                     return true;
@@ -756,7 +756,7 @@ if (!Object.values) {
                     }
 
                 } else {
-                    if (last_type === 'TK_RESERVED' && flags.last_text === 'for') {
+                    if (last_type === 'TK_RESERVED' && in_array(flags.last_text, ['for', 'foreach'])) {
                         next_mode = MODE.ForInitializer;
                     } else if (last_type === 'TK_RESERVED' && in_array(flags.last_text, ['if', 'while'])) {
                         next_mode = MODE.Conditional;
@@ -1899,7 +1899,7 @@ if (!Object.values) {
                 '! %= &= *= **= ++ += , -- -= /= :: <<= = => >>= >>>= ^= |= ~ ...'.split(' '));
 
             // words which should always start on new line.
-            this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,while,break,function,import,export'.split(',');
+            this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break,function,import,export'.split(',');
             // Leopotam fix. "is", "out" were added. "default" and "const" moved from line_starters.
             var reserved_words = this.line_starters.concat(['do', 'in', 'out', 'of', 'else', 'get', 'set', 'new', 'catch', 'finally', 'typeof', 'yield', 'async', 'await', 'from', 'as', 'is', 'default', 'const']);
 
@@ -2156,7 +2156,7 @@ if (!Object.values) {
                     ) && ( // regex and xml can only appear in specific locations during parsing
                         (last_token.type === 'TK_RESERVED' && in_array(last_token.text, ['return', 'case', 'throw', 'else', 'do', 'typeof', 'yield'])) ||
                         (last_token.type === 'TK_END_EXPR' && last_token.text === ')' &&
-                            last_token.parent && last_token.parent.type === 'TK_RESERVED' && in_array(last_token.parent.text, ['if', 'while', 'for'])) ||
+                            last_token.parent && last_token.parent.type === 'TK_RESERVED' && in_array(last_token.parent.text, ['if', 'while', 'for', 'foreach'])) ||
                         (in_array(last_token.type, ['TK_COMMENT', 'TK_START_EXPR', 'TK_START_BLOCK',
                             'TK_END_BLOCK', 'TK_OPERATOR', 'TK_EQUALS', 'TK_EOF', 'TK_SEMICOLON', 'TK_COMMA'
                         ]))
@@ -2239,7 +2239,7 @@ if (!Object.values) {
                                 }
                             }
                         };
-                        
+
                         parse_string(sep, true);
                     }
 

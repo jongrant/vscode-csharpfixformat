@@ -1,3 +1,5 @@
+* v0.0.32
+  * Fix foreach loop without parentheses.
 * v0.0.31
   * Fix commented string templates.
 * v0.0.30
