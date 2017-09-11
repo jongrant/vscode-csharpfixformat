@@ -87,11 +87,6 @@
           "default": false,
           "description": "Should #region / #endregion directives ignore indentation or use it."
         },
-        "csharpfixformat.style.activateDefaultFormatterAfter": {
-          "type": "boolean",
-          "default": false,
-          "description": "Should default code formatter be activated as post process."
-        },
         "csharpfixformat.style.braces.onSameLine": {
           "type": "boolean",
           "default": true,

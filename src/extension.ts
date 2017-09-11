@@ -36,16 +36,6 @@ export function activate(context: vscode.ExtensionContext) {
                     if (result.source) {
                         edit.replace(new vscode.Range(0, 0, doc.lineCount, 0), result.source);
                     }
-                }).then(() => {
-                    if (cfg.get<boolean>('style.activateDefaultFormatterAfter', false)) {
-                        // reformat code with registered code formatter.
-                        vscode.commands.executeCommand('vscode.executeFormatDocumentProvider', doc.uri)
-                            .then((editList: vscode.TextEdit[]) => {
-                                const defaultFormatting = new vscode.WorkspaceEdit();
-                                defaultFormatting.set(doc.uri, editList);
-                                vscode.workspace.applyEdit(defaultFormatting);
-                            });
-                    }
                 });
             }
         }
