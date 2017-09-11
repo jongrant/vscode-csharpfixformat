@@ -93,15 +93,13 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             // masking region / endregion directives.
             content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
-            // masking content of interpolated strings.
-            content = replaceNonCommentedCode(content, /(\$@?"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
-                return s.replace(/\{/g, '__vscode_pp_lerp_start__" +')
-                    .replace(/\}/g, '+ "__vscode_pp_lerp_end__');
-            });
-
-            // masking content of escaped strings.
-            content = replaceNonCommentedCode(content, /(?:[^"\\])"(?:[^"\\]|\\.|"")*"/gm, s => {
-                return s.replace(/([^\\])""/g, '$1__vscode_pp_dq__');
+            // masking content of escaped / interpolated strings.
+            content = replaceNonCommentedCode(content, /(?:[^"\\])"(?:\{[^\}]+\}|[^"\\]|\\.|"")*"/gm, s => {
+                return `${s[0]}"${s.substring(2, s.length - 1)
+                    .replace(/([^\\])""/g, '$1__vscode_pp_dq__')
+                    .replace(/([^\\])"/g, '$1__vscode_pp_sq__')
+                    .replace(/\{/g, '__vscode_pp_lbr__')
+                    .replace(/\}/g, '__vscode_pp_rbr__')}"`;
             });
 
             content = beautify(content, beautifyOptions);
@@ -116,12 +114,12 @@ export const process = (content: string, options: IFormatConfig): IResult => {
                 return options.styleIndentRegionIgnored ? '' : `${s1}`;
             });
 
-            // restore masked content of escaped strings.
+            // restore masked content of escaped / interpolated strings.
             content = content.replace(/__vscode_pp_dq__/gm, '""');
-
-            // restore masked content of interpolated strings.
-            content = content.replace(/__vscode_pp_lerp_start__" \+ /gm, s => '{');
-            content = content.replace(/ \+ "__vscode_pp_lerp_end__/gm, s => '}');
+            content = content.replace(/__vscode_pp_sq__/gm, '"');
+            content = content.replace(/__vscode_pp_lbr__/gm, '{');
+            content = content.replace(/__vscode_pp_rbr__/gm, '}');
+            content = content.replace(/\$ @/gm, '$@');
 
             // fix number suffixes.
             content = replaceCode(content, /(\d) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3) => `${s1}${s2}${s3}`);
