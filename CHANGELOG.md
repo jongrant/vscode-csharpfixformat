@@ -1,3 +1,6 @@
+* v0.0.33
+  * Fix "$@" combination for strings.
+  * Fix formatting at readonly editor windows.
 * v0.0.32
   * Fix foreach loop without parentheses.
 * v0.0.31

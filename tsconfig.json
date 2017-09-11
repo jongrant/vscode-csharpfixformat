@@ -1,19 +1,15 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "es2017",
         "outDir": "out",
-        "lib": [
-            "es6"
-        ],
         "sourceMap": true,
-        "rootDir": ".",
         "removeComments": true,
         "strictNullChecks": true,
+        "noImplicitAny": true,
         "allowJs": true
     },
     "include": [
-        "src/**/*.ts",
-        "src/**/*.js"
+        "src"
     ]
 }

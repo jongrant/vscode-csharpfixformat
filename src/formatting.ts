@@ -94,7 +94,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
             // masking content of interpolated strings.
-            content = replaceNonCommentedCode(content, /(\$"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
+            content = replaceNonCommentedCode(content, /(\$@?"(?:\{[^\n]*?\}|[^\n"\\]|\\.|"")*")/gm, s => {
                 return s.replace(/\{/g, '__vscode_pp_lerp_start__" +')
                     .replace(/\}/g, '+ "__vscode_pp_lerp_end__');
             });
