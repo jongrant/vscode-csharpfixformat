@@ -185,7 +185,7 @@ if (!Object.values) {
             exports.isIdentifierChar = function(code) {
                 if (code < 48) return code === 36;
                 if (code < 58) return true;
-                if (code < 65) return false;
+                if (code < 65) return code == 63;
                 if (code < 91) return true;
                 if (code < 97) return code === 95;
                 if (code < 123) return true;
@@ -282,9 +282,7 @@ if (!Object.values) {
 
             function create_flags(flags_base, mode) {
                 var next_indent_level = 0;
-                var type_decl = -1;
                 if (flags_base) {
-                    type_decl = flags_base.type_decl;
                     next_indent_level = flags_base.indentation_level;
                     if (!output.just_added_newline() &&
                         flags_base.line_indent_level > next_indent_level) {
@@ -306,7 +304,6 @@ if (!Object.values) {
                     do_block: false,
                     do_while: false,
                     import_block: false,
-                    type_decl: type_decl,
                     in_case_statement: false, // switch(..){ INSIDE HERE }
                     in_case: false, // we're on the exact line with "case 0:"
                     case_body: false, // the indented case-action block
@@ -867,12 +864,6 @@ if (!Object.values) {
             }
 
             function handle_start_block() {
-                if (flags.type_decl > -1) {
-                    flags.indentation_level = flags.type_decl;
-                    flags.line_indent_level = flags.type_decl;
-                    flags.type_decl = -1;
-                    output.remove_redundant_indentation(flags);
-                }
                 handle_whitespace_and_comments(current_token);
 
                 // Check if this is should be treated as a ObjectLiteral
@@ -1006,10 +997,6 @@ if (!Object.values) {
                             current_token.type = 'TK_WORD';
                         }
                     }
-                }
-
-                if (flags.type_decl < 0 && in_array(current_token.text, ['class', 'interface', 'struct'])) {
-                    flags.type_decl = flags.indentation_level;
                 }
 
                 if (start_of_statement()) {

@@ -124,17 +124,6 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             // fix number suffixes.
             content = replaceCode(content, /(\d) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3) => `${s1}${s2}${s3}`);
 
-            // fix nullables.
-            content = replaceCode(content, /(\w+) \?(\s*)([\.,\w][^\n]*)/gm, (s, s1, s2, s3) => {
-                if (s3[0] === '.' || s3[0] === ',') {
-                    return `${s1}?${s3}`;
-                }
-                if (s3.indexOf(':') !== -1) {
-                    return s;
-                }
-                return `${s1}?${s2}${s3}`;
-            });
-
             // fix generics.
             content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;]|<([^>\|\&\{\}\=;]+>))*)>/gm, s => {
                 return s.replace(/\s+/gm, ' ').replace(/\s*?\<\s*/gm, '<').replace(/\s*?\>/gm, '>');

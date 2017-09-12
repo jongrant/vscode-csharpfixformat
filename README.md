@@ -24,26 +24,28 @@ var test    =        i().  willNotBeFormatted     []   ;
 ```
 
 ## Known issues
-Multiple nullable declarations cant be placed on same line, like:
+### Multilined constrained generics not supported:
 ```
-void Test(Type1? a, Type1? b, Type1? c) { }
+class<T>
+    where T : class
+{
+}
 ```
-Instead of this each declaration should be placed on new line:
+Suggestion: put constraints on one line:
 ```
-void Test(
-    Type1? a,
-    Type1? b,
-    Type1? c) { }
+class<T> where T : class
+{
+}
 ```
-
-Multiline initialization for new instance as parameter for method will not be formatted correctly:
+---
+### Multiline initialization for new instance as parameter for method will not be formatted correctly:
 ```
 TestMethod (new TestClass {
     a = 10,
         b = 20
 });
 ```
-Instead of this - split variable declaration and method calling:
+Suggestion: split variable declaration and method calling:
 ```
 var t = new TestClass {
     a = 10,
