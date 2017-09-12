@@ -282,7 +282,9 @@ if (!Object.values) {
 
             function create_flags(flags_base, mode) {
                 var next_indent_level = 0;
+                var type_decl = -1;
                 if (flags_base) {
+                    type_decl = flags_base.type_decl;
                     next_indent_level = flags_base.indentation_level;
                     if (!output.just_added_newline() &&
                         flags_base.line_indent_level > next_indent_level) {
@@ -304,6 +306,7 @@ if (!Object.values) {
                     do_block: false,
                     do_while: false,
                     import_block: false,
+                    type_decl: type_decl,
                     in_case_statement: false, // switch(..){ INSIDE HERE }
                     in_case: false, // we're on the exact line with "case 0:"
                     case_body: false, // the indented case-action block
@@ -508,7 +511,7 @@ if (!Object.values) {
             }
 
             var newline_restricted_tokens = ['break', 'continue', 'return', 'throw'];
-
+            // unused
             function allow_wrap_or_preserved_newline(force_linewrap) {
                 force_linewrap = (force_linewrap === undefined) ? false : force_linewrap;
 
@@ -864,6 +867,12 @@ if (!Object.values) {
             }
 
             function handle_start_block() {
+                if (flags.type_decl > -1) {
+                    flags.indentation_level = flags.type_decl;
+                    flags.line_indent_level = flags.type_decl;
+                    flags.type_decl = -1;
+                    output.remove_redundant_indentation(flags);
+                }
                 handle_whitespace_and_comments(current_token);
 
                 // Check if this is should be treated as a ObjectLiteral
@@ -871,7 +880,7 @@ if (!Object.values) {
                 var second_token = get_token(2);
                 if (second_token && (
                         (in_array(second_token.text, [':', ',']) && in_array(next_token.type, ['TK_STRING', 'TK_WORD', 'TK_RESERVED'])) ||
-                        (in_array(next_token.text, ['get', 'set', '...']) && in_array(second_token.type, ['TK_WORD', 'TK_RESERVED']))
+                        (in_array(next_token.text, ['get', 'set']) && in_array(second_token.type, ['TK_WORD', 'TK_RESERVED']))
                     )) {
                     // We don't support TypeScript,but we didn't break it for a very long time.
                     // We'll try to keep not breaking it.
@@ -997,6 +1006,10 @@ if (!Object.values) {
                             current_token.type = 'TK_WORD';
                         }
                     }
+                }
+
+                if (flags.type_decl < 0 && in_array(current_token.text, ['class', 'interface', 'struct'])) {
+                    flags.type_decl = flags.indentation_level;
                 }
 
                 if (start_of_statement()) {
@@ -1893,15 +1906,15 @@ if (!Object.values) {
             var digit_hex = /[0123456789abcdefABCDEF]/;
 
             // Leopotam fix. "??" was added.
-            this.positionable_operators = '!= !== % & && * ** + - / : < << <= == === > >= >> >>> ? ?? ^ | ||'.split(' ');
+            this.positionable_operators = '!=,%,&,&&,*,+,-,/,:,<,<<,<=,==,>,>=,>>,?,??,^,|,||'.split(',');
             var punct = this.positionable_operators.concat(
                 // non-positionable operators - these do not follow operator position settings
-                '! %= &= *= **= ++ += , -- -= /= :: <<= = => >>= >>>= ^= |= ~ ...'.split(' '));
+                '! %= &= *= ++ += , -- -= /= :: = => ^= |= ~'.split(' '));
 
             // words which should always start on new line.
-            this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break,function,import,export'.split(',');
+            this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break'.split(',');
             // Leopotam fix. "is", "out" were added. "default" and "const" moved from line_starters.
-            var reserved_words = this.line_starters.concat(['do', 'in', 'out', 'of', 'else', 'get', 'set', 'new', 'catch', 'finally', 'typeof', 'yield', 'async', 'await', 'from', 'as', 'is', 'default', 'const']);
+            var reserved_words = this.line_starters.concat('do,in,out,of,else,get,set,new,catch,finally,typeof,sizeof,nameof,yield,async,await,from,as,is,default,const'.split(','));
 
             //  /* ... */ comment ends with nearest */ or end of file
             var block_comment_pattern = /([\s\S]*?)((?:\*\/)|$)/g;

@@ -6,10 +6,10 @@
     "default": "icon-128.png"
   },
   "icon": "icon-128.png",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "publisher": "Leopotam",
   "engines": {
-    "vscode": "^1.13.0"
+    "vscode": "^1.16.0"
   },
   "categories": [
     "Formatters",
@@ -24,14 +24,14 @@
     "name": "Leopotam",
     "email": "leopotam@gmail.com"
   },
-  "main": "./out/src/extension",
+  "main": "./out/extension.js",
   "contributes": {
     "keybindings": [
       {
         "command": "csharpfixformat.process",
         "key": "ctrl+alt+i",
         "mac": "ctrl+alt+i",
-        "when": "editorTextFocus && resourceLangId == csharp"
+        "when": "editorTextFocus && !editorReadonly && resourceLangId == csharp"
       }
     ],
     "commands": [
@@ -43,7 +43,7 @@
     "menus": {
       "editor/context": [
         {
-          "when": "resourceLangId == csharp",
+          "when": "editorTextFocus && !editorReadonly && resourceLangId == csharp",
           "command": "csharpfixformat.process",
           "group": "modification"
         }
@@ -86,11 +86,6 @@
           "type": "boolean",
           "default": false,
           "description": "Should #region / #endregion directives ignore indentation or use it."
-        },
-        "csharpfixformat.style.activateDefaultFormatterAfter": {
-          "type": "boolean",
-          "default": false,
-          "description": "Should default code formatter be activated as post process."
         },
         "csharpfixformat.style.braces.onSameLine": {
           "type": "boolean",
@@ -159,9 +154,9 @@
     "package": "node_modules/.bin/vsce package"
   },
   "devDependencies": {
-    "@types/node": "^7.0.43",
+    "@types/node": "^8.0.28",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.1",
+    "typescript": "^2.5.2",
     "vsce": "^1.30.0",
     "vscode": "^1.1.5"
   },
