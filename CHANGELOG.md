@@ -2,6 +2,7 @@
   * Fix "$@" combination for strings.
   * Disable formatting for templates inside strings.
   * Fix formatting at readonly editor windows.
+  * Fix body indentation for constrainted generics.
   * "csharpfixformat.style.activateDefaultFormatterAfter" option deprecated (prepare to be default formatter).
 * v0.0.32
   * Fix foreach loop without parentheses.
