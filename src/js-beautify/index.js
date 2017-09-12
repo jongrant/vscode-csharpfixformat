@@ -185,7 +185,7 @@ if (!Object.values) {
             exports.isIdentifierChar = function(code) {
                 if (code < 48) return code === 36;
                 if (code < 58) return true;
-                if (code < 65) return false;
+                if (code < 65) return code == 63;
                 if (code < 91) return true;
                 if (code < 97) return code === 95;
                 if (code < 123) return true;

@@ -1,3 +1,5 @@
+* v0.0.34
+  * Fix multiple nulable declarations on same line.
 * v0.0.33
   * Fix "$@" combination for strings.
   * Disable formatting for templates inside strings.
