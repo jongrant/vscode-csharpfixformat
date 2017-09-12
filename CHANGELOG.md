@@ -1,5 +1,6 @@
 * v0.0.34
   * Fix multiple nulable declarations on same line.
+  * Revert "Fix body indentation for constrainted generics" due it broken at some cases.
 * v0.0.33
   * Fix "$@" combination for strings.
   * Disable formatting for templates inside strings.

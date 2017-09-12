@@ -24,14 +24,28 @@ var test    =        i().  willNotBeFormatted     []   ;
 ```
 
 ## Known issues
-Multiline initialization for new instance as parameter for method will not be formatted correctly:
+### Multilined constrained generics not supported:
+```
+class<T>
+    where T : class
+{
+}
+```
+Suggestion: put constraints on one line:
+```
+class<T> where T : class
+{
+}
+```
+---
+### Multiline initialization for new instance as parameter for method will not be formatted correctly:
 ```
 TestMethod (new TestClass {
     a = 10,
         b = 20
 });
 ```
-Instead of this - split variable declaration and method calling:
+Suggestion: split variable declaration and method calling:
 ```
 var t = new TestClass {
     a = 10,
