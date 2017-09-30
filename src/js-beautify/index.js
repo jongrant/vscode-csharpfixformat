@@ -773,7 +773,7 @@ if (!Object.values) {
                     // do nothing on (( and )( and ][ and ]( and .(
                 } else if (!(last_type === 'TK_RESERVED' && current_token.text === '(') && last_type !== 'TK_WORD' && last_type !== 'TK_OPERATOR') {
                     output.space_before_token = true;
-                } else if ((last_type === 'TK_RESERVED' && (flags.last_word === 'function' || flags.last_word === 'typeof')) ||
+                } else if ((last_type === 'TK_RESERVED' && (flags.last_word === 'function')) ||
                     (flags.last_text === '*' &&
                         (in_array(last_last_text, ['function', 'yield']) ||
                             (flags.mode === MODE.ObjectLiteral && in_array(last_last_text, ['{', ',']))))) {
