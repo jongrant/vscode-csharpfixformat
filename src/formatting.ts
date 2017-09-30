@@ -1,6 +1,7 @@
 const beautify = require('./js-beautify').js_beautify;
 
 export interface IFormatConfig {
+    useTabs: boolean;
     tabSize: number;
     sortUsingsEnabled: boolean;
     sortUsingsSystemFirst: boolean;
@@ -77,6 +78,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             }
             const beautifyOptions = {
                 brace_style: bracesStyle,
+                indent_with_tabs: options.useTabs,
                 indent_size: options.tabSize,
                 preserve_newlines: true,
                 max_preserve_newlines: options.styleNewLineMaxAmount > 0 ? options.styleNewLineMaxAmount : 0,

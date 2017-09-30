@@ -7,10 +7,12 @@ export function activate(context: vscode.ExtensionContext) {
         if (editor) {
             const doc = editor.document;
             if (doc.languageId === 'csharp') {
+                const sysCfg = vscode.workspace.getConfiguration();
                 const cfg = vscode.workspace.getConfiguration('csharpfixformat');
                 return editor.edit(edit => {
                     const options: formatting.IFormatConfig = {
-                        tabSize: vscode.workspace.getConfiguration().get<number>('editor.tabSize', 4),
+                        useTabs: !sysCfg.get<boolean>('editor.insertSpaces', true),
+                        tabSize: sysCfg.get<number>('editor.tabSize', 4),
                         sortUsingsEnabled: cfg.get<boolean>('sort.usings.enabled', true),
                         sortUsingsSystemFirst: cfg.get<boolean>('sort.usings.systemFirst', true),
                         sortUsingsSplitGroups: cfg.get<boolean>('sort.usings.splitGroups', false),

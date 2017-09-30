@@ -1,3 +1,5 @@
+* v0.0.35
+  * Tabs indentation support ("editor.insertSpaces" setting).
 * v0.0.34
   * Fix multiple nulable declarations on same line.
   * Revert "Fix body indentation for constrainted generics" due it broken at some cases.
