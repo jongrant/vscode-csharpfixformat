@@ -1,3 +1,5 @@
+* v0.0.36
+  * Fix "typeof (" pair with "csharpfixformat.style.spaces.beforeParenthesis"=false.
 * v0.0.35
   * Tabs indentation support ("editor.insertSpaces" setting).
 * v0.0.34
