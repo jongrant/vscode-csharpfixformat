@@ -124,7 +124,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             content = content.replace(/\$ @/gm, '$@');
 
             // fix number suffixes.
-            content = replaceCode(content, /(\d) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3) => `${s1}${s2}${s3}`);
+            content = replaceCode(content, /(?:[^\w])(\d) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3) => `${s1}${s2}${s3}`);
 
             // fix generics.
             content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;]|<([^>\|\&\{\}\=;]+>))*)>/gm, s => {
