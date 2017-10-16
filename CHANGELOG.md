@@ -1,3 +1,5 @@
+* v0.0.38
+  * Additional fix to number suffixes indentation.
 * v0.0.37
   * Fix number suffixes indentation.
 * v0.0.36
