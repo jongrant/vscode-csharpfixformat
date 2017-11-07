@@ -1,3 +1,5 @@
+* v0.0.39
+  * Extension now works as default FormatProvider in vscode (no need custom keybindings / commands).
 * v0.0.38
   * Additional fix to number suffixes indentation.
 * v0.0.37

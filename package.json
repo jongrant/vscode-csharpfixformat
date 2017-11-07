@@ -6,10 +6,10 @@
     "default": "icon-128.png"
   },
   "icon": "icon-128.png",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "publisher": "Leopotam",
   "engines": {
-    "vscode": "^1.16.0"
+    "vscode": "^1.17.0"
   },
   "categories": [
     "Formatters",
@@ -18,7 +18,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:csharpfixformat.process"
+    "onLanguage:csharp"
   ],
   "author": {
     "name": "Leopotam",
@@ -26,29 +26,6 @@
   },
   "main": "./out/extension.js",
   "contributes": {
-    "keybindings": [
-      {
-        "command": "csharpfixformat.process",
-        "key": "ctrl+alt+i",
-        "mac": "ctrl+alt+i",
-        "when": "editorTextFocus && !editorReadonly && resourceLangId == csharp"
-      }
-    ],
-    "commands": [
-      {
-        "command": "csharpfixformat.process",
-        "title": "CSharp: Fix format"
-      }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "when": "editorTextFocus && !editorReadonly && resourceLangId == csharp",
-          "command": "csharpfixformat.process",
-          "group": "modification"
-        }
-      ]
-    },
     "configuration": {
       "title": "C# FixFormat configuration",
       "properties": {
@@ -149,15 +126,15 @@
   ],
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "watch": "node_modules/.bin/tsc -w",
+    "watch": "node_modules/.bin/tsc -w -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "package": "node_modules/.bin/vsce package"
   },
   "devDependencies": {
-    "@types/node": "^8.0.34",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.3",
-    "vsce": "^1.31.1",
+    "@types/node": "^8.0.49",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
+    "vsce": "^1.32.0",
     "vscode": "^1.1.6"
   },
   "license": "MIT",
