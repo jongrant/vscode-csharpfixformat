@@ -55,11 +55,11 @@ export function activate(context: vs.ExtensionContext) {
         const omnisharpUpdated = cfg.has(keyName);
         if (omnisharpUpdated) {
             if (cfg.get<boolean>(keyName, true)) {
-                vs.window.showWarningMessage('For properly code formatting, omnisharp format provider should be disabled: "csharp.format.enable=false"', 'Fix it')
+                vs.window.showWarningMessage('For properly code formatting, omnisharp format provider should be disabled: "csharp.format.enable=false"', 'Fix and reload')
                     .then((choice: string | undefined) => {
                         if (choice) {
                             cfg.update(keyName, false, vs.ConfigurationTarget.Global);
-                            vs.window.showInformationMessage('Done. You should reload window / restart vscode to apply omnisharp settings.');
+                            vs.commands.executeCommand('workbench.action.reloadWindow');
                         }
                     });
             }
