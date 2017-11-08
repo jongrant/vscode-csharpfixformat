@@ -11,17 +11,39 @@ This extension helps to format C# code. When OmniSharp will support all features
 This extension not dependent on any 3dparty extensions (even omnisharp) and works as standalone formatting solution for current C#-file.
 
 ## Features
-All features available through commands menu, context menu in text editor with option "CSharp: Fix format" or through keybinding "ctrl+alt+i" after opening C# file.
+All features available through standard "format document" hotkey after opening C# file.
   * Sort usings in alphabetical order. Doubles will be removed automatically.
   * Fix indent size for all lines (omnisharp still cant do it for wrapped lines).
   * Cleanup empty lines with allowed limit in row.
 
+## Extension Settings
+* `csharpfixformat.sort.usings.enabled`: Should usings be sorted or not. True by default.
+* `csharpfixformat.sort.usings.systemFirst`: Put System.xxx namespaces first at usings list on sorting. True by default.
+* `csharpfixformat.sort.usings.splitGroups`: Insert blank line between using blocks grouped by first part of namespace. False by default.
+* `csharpfixformat.style.enabled`: Enable code reformat with style options. True by default.
+* `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
+* `csharpfixformat.style.indent.preprocessorIgnored`: Should preprocessor directives ignore indentation or use it. True by default.
+* `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
+* `csharpfixformat.style.braces.onSameLine`: Should open braces be kept on expression line (K&R style) or on new line. True by default.
+* `csharpfixformat.style.braces.allowInlines`: Allow expressions inside braces at one line. True by default.
+* `csharpfixformat.style.spaces.beforeParenthesis`: Space before '(' - opening parenthesis. True by default.
+* `csharpfixformat.style.spaces.afterParenthesis`: Space after ')' - closing parenthesis. True by default.
+* `csharpfixformat.style.spaces.beforeIndexerBracket`: Override spaces.beforeBracket rule for indexer sequence 'this['. True by default.
+* `csharpfixformat.style.spaces.beforeBracket`: Space before '[' - opening bracket. False by default.
+* `csharpfixformat.style.spaces.afterBracket`: Space after ']' - closing bracket. True by default.
+* `csharpfixformat.style.spaces.insideEmptyParenthis`: Space inside '()' - empty parenthis. False by default.
+* `csharpfixformat.style.spaces.insideEmptyBraces`: Space inside '{}' - empty braces. True by default.
+* `csharpfixformat.style.spaces.insideEmptyBrackets`: Space inside '[]' - empty brackets. False by default.
+
+
+## Special flags
 Formatting can be ignored for any code with wrapping to directives:
 ```
 /* fixformat ignore:start */
 var test    =        i().  willNotBeFormatted     []   ;
 /* fixformat ignore:end */
 ```
+
 
 ## Known issues
 ### Multilined constrained generics not supported:
@@ -54,31 +76,12 @@ var t = new TestClass {
 TestMethod (t);
 ```
 
-## Release installation
+## Installation of release version
 Use instructions from marketplace.
 
-## Manual installation from sources
+
+## Installation from sources
 1. Install node.js.
 2. Run "npm install" from project folder.
 3. Run "npm run package" from project folder.
 4. Install brand new packed *.vsix bundle through vscode plugins menu option "Install from VSIX".
-
-## Extension Settings
-
-* `csharpfixformat.sort.usings.enabled`: Should usings be sorted or not. True by default.
-* `csharpfixformat.sort.usings.systemFirst`: Put System.xxx namespaces first at usings list on sorting. True by default.
-* `csharpfixformat.sort.usings.splitGroups`: Insert blank line between using blocks grouped by first part of namespace. False by default.
-* `csharpfixformat.style.enabled`: Enable code reformat with style options. True by default.
-* `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
-* `csharpfixformat.style.indent.preprocessorIgnored`: Should preprocessor directives ignore indentation or use it. True by default.
-* `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
-* `csharpfixformat.style.braces.onSameLine`: Should open braces be kept on expression line (K&R style) or on new line. True by default.
-* `csharpfixformat.style.braces.allowInlines`: Allow expressions inside braces at one line. True by default.
-* `csharpfixformat.style.spaces.beforeParenthesis`: Space before '(' - opening parenthesis. True by default.
-* `csharpfixformat.style.spaces.afterParenthesis`: Space after ')' - closing parenthesis. True by default.
-* `csharpfixformat.style.spaces.beforeIndexerBracket`: Override spaces.beforeBracket rule for indexer sequence 'this['. True by default.
-* `csharpfixformat.style.spaces.beforeBracket`: Space before '[' - opening bracket. False by default.
-* `csharpfixformat.style.spaces.afterBracket`: Space after ']' - closing bracket. True by default.
-* `csharpfixformat.style.spaces.insideEmptyParenthis`: Space inside '()' - empty parenthis. False by default.
-* `csharpfixformat.style.spaces.insideEmptyBraces`: Space inside '{}' - empty braces. True by default.
-* `csharpfixformat.style.spaces.insideEmptyBrackets`: Space inside '[]' - empty brackets. False by default.
