@@ -1,3 +1,5 @@
+* v0.0.40
+  * Fix indentation for enums / nested fields when tabs uses instead of spaces.
 * v0.0.39
   * Extension now works as default FormatProvider in vscode (no need custom keybindings / commands).
 * v0.0.38
