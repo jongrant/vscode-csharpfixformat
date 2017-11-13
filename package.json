@@ -1,150 +1,150 @@
 {
-  "name": "csharpfixformat",
-  "displayName": "C# FixFormat",
-  "description": "Fix format of usings / indents / braces / empty lines",
-  "icons": {
-    "default": "icon-128.png"
-  },
-  "icon": "icon-128.png",
-  "version": "0.0.40",
-  "publisher": "Leopotam",
-  "engines": {
-    "vscode": "^1.18.0"
-  },
-  "categories": [
-    "Formatters",
-    "Languages",
-    "Linters",
-    "Other"
-  ],
-  "activationEvents": [
-    "onLanguage:csharp"
-  ],
-  "author": {
-    "name": "Leopotam",
-    "email": "leopotam@gmail.com"
-  },
-  "main": "./out/extension.js",
-  "contributes": {
-    "configuration": {
-      "title": "C# FixFormat configuration",
-      "properties": {
-        "csharpfixformat.sort.usings.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Should usings be sorted or not."
-        },
-        "csharpfixformat.sort.usings.systemFirst": {
-          "type": "boolean",
-          "default": true,
-          "description": "Put System.xxx namespaces first at usings list on sorting."
-        },
-        "csharpfixformat.sort.usings.splitGroups": {
-          "type": "boolean",
-          "default": false,
-          "description": "Insert blank line between using blocks grouped by first part of namespace."
-        },
-        "csharpfixformat.style.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable code reformat with style options."
-        },
-        "csharpfixformat.style.newline.maxAmount": {
-          "type": "number",
-          "default": 2,
-          "description": "Amount of new line (\\n) symbols allowed in row. 1 means no blank lines. Use 0 for disable."
-        },
-        "csharpfixformat.style.indent.preprocessorIgnored": {
-          "type": "boolean",
-          "default": true,
-          "description": "Should preprocessor directives ignore indentation or use it."
-        },
-        "csharpfixformat.style.indent.regionIgnored": {
-          "type": "boolean",
-          "default": false,
-          "description": "Should #region / #endregion directives ignore indentation or use it."
-        },
-        "csharpfixformat.style.braces.onSameLine": {
-          "type": "boolean",
-          "default": true,
-          "description": "Should open braces be kept on expression line (K&R style) or on new line."
-        },
-        "csharpfixformat.style.braces.allowInlines": {
-          "type": "boolean",
-          "default": true,
-          "description": "Allow expressions inside braces at one line."
-        },
-        "csharpfixformat.style.spaces.beforeParenthesis": {
-          "type": "boolean",
-          "default": true,
-          "description": "Space before '(' - opening parenthesis."
-        },
-        "csharpfixformat.style.spaces.afterParenthesis": {
-          "type": "boolean",
-          "default": true,
-          "description": "Space after ')' - closing parenthesis."
-        },
-        "csharpfixformat.style.spaces.beforeIndexerBracket": {
-          "type": "boolean",
-          "default": true,
-          "description": "Override spaces.beforeBracket rule for indexer sequence 'this['."
-        },
-        "csharpfixformat.style.spaces.beforeBracket": {
-          "type": "boolean",
-          "default": false,
-          "description": "Space before '[' - opening bracket."
-        },
-        "csharpfixformat.style.spaces.afterBracket": {
-          "type": "boolean",
-          "default": true,
-          "description": "Space after ']' - closing bracket."
-        },
-        "csharpfixformat.style.spaces.insideEmptyParenthis": {
-          "type": "boolean",
-          "default": false,
-          "description": "Space inside '()' - empty parenthis."
-        },
-        "csharpfixformat.style.spaces.insideEmptyBraces": {
-          "type": "boolean",
-          "default": true,
-          "description": "Space inside '{}' - empty braces."
-        },
-        "csharpfixformat.style.spaces.insideEmptyBrackets": {
-          "type": "boolean",
-          "default": false,
-          "description": "Space inside '[]' - empty brackets."
+    "name": "csharpfixformat",
+    "displayName": "C# FixFormat",
+    "description": "Fix format of usings / indents / braces / empty lines",
+    "icons": {
+        "default": "icon-128.png"
+    },
+    "icon": "icon-128.png",
+    "version": "0.0.41",
+    "publisher": "Leopotam",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Formatters",
+        "Languages",
+        "Linters",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:csharp"
+    ],
+    "author": {
+        "name": "Leopotam",
+        "email": "leopotam@gmail.com"
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "C# FixFormat configuration",
+            "properties": {
+                "csharpfixformat.sort.usings.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should usings be sorted or not."
+                },
+                "csharpfixformat.sort.usings.systemFirst": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Put System.xxx namespaces first at usings list on sorting."
+                },
+                "csharpfixformat.sort.usings.splitGroups": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Insert blank line between using blocks grouped by first part of namespace."
+                },
+                "csharpfixformat.style.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable code reformat with style options."
+                },
+                "csharpfixformat.style.newline.maxAmount": {
+                    "type": "number",
+                    "default": 2,
+                    "description": "Amount of new line (\\n) symbols allowed in row. 1 means no blank lines. Use 0 for disable."
+                },
+                "csharpfixformat.style.indent.preprocessorIgnored": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should preprocessor directives ignore indentation or use it."
+                },
+                "csharpfixformat.style.indent.regionIgnored": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should #region / #endregion directives ignore indentation or use it."
+                },
+                "csharpfixformat.style.braces.onSameLine": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should open braces be kept on expression line (K&R style) or on new line."
+                },
+                "csharpfixformat.style.braces.allowInlines": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Allow expressions inside braces at one line."
+                },
+                "csharpfixformat.style.spaces.beforeParenthesis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Space before '(' - opening parenthesis."
+                },
+                "csharpfixformat.style.spaces.afterParenthesis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Space after ')' - closing parenthesis."
+                },
+                "csharpfixformat.style.spaces.beforeIndexerBracket": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Override spaces.beforeBracket rule for indexer sequence 'this['."
+                },
+                "csharpfixformat.style.spaces.beforeBracket": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Space before '[' - opening bracket."
+                },
+                "csharpfixformat.style.spaces.afterBracket": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Space after ']' - closing bracket."
+                },
+                "csharpfixformat.style.spaces.insideEmptyParenthis": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Space inside '()' - empty parenthis."
+                },
+                "csharpfixformat.style.spaces.insideEmptyBraces": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Space inside '{}' - empty braces."
+                },
+                "csharpfixformat.style.spaces.insideEmptyBrackets": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Space inside '[]' - empty brackets."
+                }
+            }
         }
-      }
-    }
-  },
-  "keywords": [
-    "C#",
-    "csharp",
-    "sort",
-    "using",
-    "format"
-  ],
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "watch": "node_modules/.bin/tsc -w -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "package": "node_modules/.bin/vsce package"
-  },
-  "devDependencies": {
-    "@types/node": "^8.0.51",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1",
-    "vsce": "^1.32.0",
-    "vscode": "^1.1.6"
-  },
-  "license": "MIT",
-  "homepage": "https://github.com/Leopotam/vscode-csharpfixformat",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Leopotam/vscode-csharpfixformat"
-  },
-  "bugs": {
-    "url": "https://github.com/Leopotam/vscode-csharpfixformat/issues"
-  },
-  "dependencies": {}
+    },
+    "keywords": [
+        "C#",
+        "csharp",
+        "sort",
+        "using",
+        "format"
+    ],
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "watch": "node_modules/.bin/tsc -w -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "package": "node_modules/.bin/vsce package"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.51",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vsce": "^1.32.0",
+        "vscode": "^1.1.6"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/Leopotam/vscode-csharpfixformat",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Leopotam/vscode-csharpfixformat"
+    },
+    "bugs": {
+        "url": "https://github.com/Leopotam/vscode-csharpfixformat/issues"
+    },
+    "dependencies": {}
 }
