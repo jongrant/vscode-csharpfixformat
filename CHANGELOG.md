@@ -1,3 +1,5 @@
+* v0.0.42
+  * Formatting in batch mode through folder context menu at explorer window.
 * v0.0.41
   * Fix issue on spaces.afterParenthesis=true and next opening "(" / "[".
 * v0.0.40
