@@ -16,6 +16,8 @@ All features available through standard "format document" hotkey after opening C
   * Fix indent size for all lines (omnisharp still cant do it for wrapped lines).
   * Cleanup empty lines with allowed limit in row.
 
+> Extension provides formatting in batch mode through folder context menu at explorer window.
+
 ## Extension Settings
 * `csharpfixformat.sort.usings.enabled`: Should usings be sorted or not. True by default.
 * `csharpfixformat.sort.usings.systemFirst`: Put System.xxx namespaces first at usings list on sorting. True by default.
