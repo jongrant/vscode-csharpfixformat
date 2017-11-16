@@ -1,7 +1,7 @@
 import * as vs from 'vscode';
 import * as formatting from './formatting';
-import * as glob from 'glob';
 import * as fs from 'fs';
+import * as utils from './utils';
 
 class FormatProvider implements vs.DocumentRangeFormattingEditProvider, vs.OnTypeFormattingEditProvider {
     provideOnTypeFormattingEdits(document: vs.TextDocument, position: vs.Position, ch: string, options: vs.FormattingOptions, token: vs.CancellationToken): vs.ProviderResult<vs.TextEdit[]> {
@@ -27,25 +27,21 @@ class FormatProvider implements vs.DocumentRangeFormattingEditProvider, vs.OnTyp
     }
 }
 
-const formatFolder = async (path: vs.Uri) => {
-    return new Promise((resolve, reject) => {
-        glob(`${path.fsPath}/**/*.cs`, (err, matches) => {
-            if (matches.length > 0) {
-                const formatOptions = getFormatOptions();
-                for (const fn of matches) {
-                    try {
-                        const source = fs.readFileSync(fn, 'utf8');
-                        const result = formatting.process(source, formatOptions);
-                        if (result.error) { throw new Error(result.error); }
-                        fs.writeFileSync(fn, result.source, 'utf8');
-                    } catch (ex) {
-                        return reject(new Error(`${fn} => ${ex}`));
-                    }
-                }
-                resolve();
+const formatFolder = (path: vs.Uri) => {
+    const matches = utils.findFiles(path.fsPath, /\.cs$/mi);
+    if (matches.length > 0) {
+        const formatOptions = getFormatOptions();
+        for (const fn of matches) {
+            try {
+                const source = fs.readFileSync(fn, 'utf8');
+                const result = formatting.process(source, formatOptions);
+                if (result.error) { throw new Error(result.error); }
+                fs.writeFileSync(fn, result.source, 'utf8');
+            } catch (ex) {
+                throw new Error(`${fn} => ${ex}`);
             }
-        });
-    });
+        }
+    }
 };
 
 const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatConfig => {
@@ -108,7 +104,7 @@ export function activate(context: vs.ExtensionContext) {
             const choice = await vs.window.showWarningMessage('[C#FixFormat] Folder formatting operation cant be undone.', 'Continue');
             if (choice) {
                 try {
-                    await formatFolder(item);
+                    formatFolder(item);
                     vs.window.showInformationMessage('[C#FixFormat] Folder formatting completed successfully.');
                 } catch (ex) {
                     vs.window.showWarningMessage(`[C#FixFormat] Folder formatting error: ${ex}`);

@@ -1,3 +1,5 @@
+* v0.0.43
+  * External npm module for recursive file search replaced with builtin function.
 * v0.0.42
   * Formatting in batch mode through folder context menu at explorer window.
 * v0.0.41
