@@ -200,6 +200,10 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             if (options.styleSpacesBeforeIndexerBracket) {
                 content = replaceCode(content, /this\[/gm, s => 'this [');
             }
+
+            // fix operator overloading.
+            const spaceBefore = options.styleSpacesBeforeParenthesis ? ' ' : '';
+            content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
         }
 
         if (options.sortUsingsEnabled) {
