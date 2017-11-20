@@ -200,6 +200,17 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             if (options.styleSpacesBeforeIndexerBracket) {
                 content = replaceCode(content, /this\[/gm, s => 'this [');
             }
+
+            // fix operator overloading.
+            const spaceBefore = options.styleSpacesBeforeParenthesis ? ' ' : '';
+            content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
+
+            // fix named parameters.
+            content = replaceCode(content, /\( ?[^\?\)]+?\)/gm, s => {
+                const ss = 10;
+                const sss = s.replace(/ :/g, ':');
+                return sss;
+            });
         }
 
         if (options.sortUsingsEnabled) {

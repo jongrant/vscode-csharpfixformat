@@ -1,3 +1,6 @@
+* v0.0.44
+  * Fix operator overloading.
+  * Fix named parameters.
 * v0.0.43
   * External npm module for recursive file search replaced with builtin function.
 * v0.0.42
