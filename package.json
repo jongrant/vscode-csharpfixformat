@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.44",
+    "version": "0.0.45",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.18.0"
@@ -30,7 +30,7 @@
         "commands": [
             {
                 "command": "csharpfixformat.formatFolder",
-                "title": "C#FixFormat: format nested C# files"
+                "title": "C#FixFormat: format C# files"
             }
         ],
         "menus": {
