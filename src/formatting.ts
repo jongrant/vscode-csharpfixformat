@@ -77,6 +77,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
                 bracesStyle += ',preserve-inline';
             }
             const beautifyOptions = {
+                eol: '\n',
                 brace_style: bracesStyle,
                 indent_with_tabs: options.useTabs,
                 indent_size: options.tabSize,
@@ -88,6 +89,9 @@ export const process = (content: string, options: IFormatConfig): IResult => {
                 keep_array_indentation: false,
                 e4x: false
             };
+
+            // fix mixed line-endings issue.
+            content = content.replace(/\r\n/g, '\n');
 
             // masking preprocessor directives for beautifier - no builtin support for them.
             content = replaceCode(content, /#(?:define|if|else|elif|endif|pragma)/gm, s => `// __vscode_pp__${s}`);
@@ -206,11 +210,7 @@ export const process = (content: string, options: IFormatConfig): IResult => {
             content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
 
             // fix named parameters.
-            content = replaceCode(content, /\( ?[^\?\)]+?\)/gm, s => {
-                const ss = 10;
-                const sss = s.replace(/ :/g, ':');
-                return sss;
-            });
+            content = replaceCode(content, /\( ?[^\?\)]+?\)/gm, s => s.replace(/ :/g, ':'));
         }
 
         if (options.sortUsingsEnabled) {

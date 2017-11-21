@@ -55,7 +55,7 @@ class<T>
 {
 }
 ```
-Suggestion: put constraints on one line:
+*Suggestion* - put constraints on one line:
 ```
 class<T> where T : class
 {
@@ -69,7 +69,7 @@ TestMethod (new TestClass {
         b = 20
 });
 ```
-Suggestion: split variable declaration and method calling:
+*Suggestion* - split variable declaration and method calling:
 ```
 var t = new TestClass {
     a = 10,
@@ -77,7 +77,33 @@ var t = new TestClass {
 };
 TestMethod (t);
 ```
-
+---
+### Initialization with nested "{ }" can be formatted wrong:
+*Expected:*
+```
+new System.Collections.Generic.Dictionary<string, string>() {
+    { "", "" },
+    { "", "" },
+    { "", "" },
+};
+```
+*Actual:*
+```
+new System.Collections.Generic.Dictionary<string, string>()	{
+    { "", "" }, { "", "" }, { "", "" },
+};
+```
+*Suggestion* - add comment for each item in initialization:
+```
+new System.Collections.Generic.Dictionary<string, string>() {
+    // Item 1 description.
+    { "", "" },
+    // Item 2 description.
+    { "", "" },
+    // Item 3 description.
+    { "", "" },
+};
+```
 ## Installation of release version
 Use instructions from marketplace.
 

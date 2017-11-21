@@ -1,3 +1,7 @@
+* v0.0.45
+  * Fix issue for mixed line-endings (\r\n + \n) at one file.
+  * Description of issues in README updated.
+  * Code cleanup.
 * v0.0.44
   * Fix operator overloading.
   * Fix named parameters.
