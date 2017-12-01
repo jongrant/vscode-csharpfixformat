@@ -112,12 +112,12 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = beautify(content, beautifyOptions);
 
                 // restore masked preprocessor directives.
-                content = content.replace(/( *)\/\/ __vscode_pp__/gm, (s: string, s1: string) => {
+                content = content.replace(/([ \t]*)\/\/ __vscode_pp__/gm, (s: string, s1: string) => {
                     return options.styleIndentPreprocessorIgnored ? '' : `${s1}`;
                 });
 
                 // restore masked region / endregion directives.
-                content = content.replace(/( *)\/\/ __vscode_pp_region__/gm, (s: string, s1: string) => {
+                content = content.replace(/([ \t]*)\/\/ __vscode_pp_region__/gm, (s: string, s1: string) => {
                     return options.styleIndentRegionIgnored ? '' : `${s1}`;
                 });
 
