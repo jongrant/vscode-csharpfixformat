@@ -88,7 +88,7 @@
 // Object.values polyfill found here:
 // http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html
 if (!Object.values) {
-    Object.values = function(o) {
+    Object.values = function (o) {
         if (o !== Object(o)) {
             throw new TypeError('Object.values called on a non-object');
         }
@@ -103,7 +103,7 @@ if (!Object.values) {
     };
 }
 
-(function() {
+(function () {
 
     function mergeOpts(allOptions, targetType) {
         var finalOpts = {};
@@ -127,7 +127,7 @@ if (!Object.values) {
     function js_beautify(js_source_text, options) {
 
         var acorn = {};
-        (function(exports) {
+        (function (exports) {
             /* jshint curly: false */
             // This section of code is taken from acorn.
             //
@@ -168,7 +168,7 @@ if (!Object.values) {
 
             // Test whether a given character code starts an identifier.
 
-            exports.isIdentifierStart = function(code) {
+            exports.isIdentifierStart = function (code) {
                 // permit $ (36) and @ (64). @ is used in ES7 decorators.
                 if (code < 65) return code === 36 || code === 64;
                 // 65 through 91 are uppercase letters.
@@ -182,7 +182,7 @@ if (!Object.values) {
 
             // Test whether a given character is part of an identifier.
 
-            exports.isIdentifierChar = function(code) {
+            exports.isIdentifierChar = function (code) {
                 if (code < 48) return code === 36;
                 if (code < 58) return true;
                 if (code < 65) return code == 63;
@@ -392,7 +392,7 @@ if (!Object.values) {
             var preindent_index = 0;
             if (js_source_text && js_source_text.length) {
                 while ((js_source_text.charAt(preindent_index) === ' ' ||
-                        js_source_text.charAt(preindent_index) === '\t')) {
+                    js_source_text.charAt(preindent_index) === '\t')) {
                     baseIndentString += js_source_text.charAt(preindent_index);
                     preindent_index += 1;
                 }
@@ -420,7 +420,7 @@ if (!Object.values) {
             flag_store = [];
             set_mode(MODE.BlockStatement);
 
-            this.beautify = function() {
+            this.beautify = function () {
 
                 /*jshint onevar:true */
                 var sweet_code;
@@ -522,9 +522,9 @@ if (!Object.values) {
 
                 if (operatorLogicApplies) {
                     var shouldPrintOperatorNewline = (
-                            in_array(flags.last_text, Tokenizer.positionable_operators) &&
-                            in_array(opt.operator_position, OPERATOR_POSITION_BEFORE_OR_PRESERVE)
-                        ) ||
+                        in_array(flags.last_text, Tokenizer.positionable_operators) &&
+                        in_array(opt.operator_position, OPERATOR_POSITION_BEFORE_OR_PRESERVE)
+                    ) ||
                         in_array(current_token.text, Tokenizer.positionable_operators);
                     shouldPreserveOrForce = shouldPreserveOrForce && shouldPrintOperatorNewline;
                 }
@@ -870,9 +870,9 @@ if (!Object.values) {
                 var next_token = get_token(1);
                 var second_token = get_token(2);
                 if (second_token && (
-                        (in_array(second_token.text, [':', ',']) && in_array(next_token.type, ['TK_STRING', 'TK_WORD', 'TK_RESERVED'])) ||
-                        (in_array(next_token.text, ['get', 'set']) && in_array(second_token.type, ['TK_WORD', 'TK_RESERVED']))
-                    )) {
+                    (in_array(second_token.text, [':', ',']) && in_array(next_token.type, ['TK_STRING', 'TK_WORD', 'TK_RESERVED'])) ||
+                    (in_array(next_token.text, ['get', 'set']) && in_array(second_token.type, ['TK_WORD', 'TK_RESERVED']))
+                )) {
                     // We don't support TypeScript,but we didn't break it for a very long time.
                     // We'll try to keep not breaking it.
                     if (!in_array(last_last_text, ['class', 'interface'])) {
@@ -917,7 +917,7 @@ if (!Object.values) {
                 }
 
                 if ((opt.brace_style === "expand" ||
-                        (opt.brace_style === "none" && current_token.wanted_newline)) &&
+                    (opt.brace_style === "none" && current_token.wanted_newline)) &&
                     !flags.inline_frame) {
                     if (last_type !== 'TK_OPERATOR' &&
                         (empty_anonymous_function ||
@@ -1149,9 +1149,9 @@ if (!Object.values) {
 
                 if (current_token.type === 'TK_RESERVED' && in_array(current_token.text, ['else', 'catch', 'finally'])) {
                     if ((!(last_type === 'TK_END_BLOCK' && previous_flags.mode === MODE.BlockStatement) ||
-                            opt.brace_style === "expand" ||
-                            opt.brace_style === "end-expand" ||
-                            (opt.brace_style === "none" && current_token.wanted_newline)) &&
+                        opt.brace_style === "expand" ||
+                        opt.brace_style === "end-expand" ||
+                        (opt.brace_style === "none" && current_token.wanted_newline)) &&
                         !flags.inline_frame) {
                         print_newline();
                     } else {
@@ -1597,20 +1597,20 @@ if (!Object.values) {
             var _items = [];
             var _empty = true;
 
-            this.set_indent = function(level) {
+            this.set_indent = function (level) {
                 _character_count = parent.baseIndentLength + level * parent.indent_length;
                 _indent_count = level;
             };
 
-            this.get_character_count = function() {
+            this.get_character_count = function () {
                 return _character_count;
             };
 
-            this.is_empty = function() {
+            this.is_empty = function () {
                 return _empty;
             };
 
-            this.last = function() {
+            this.last = function () {
                 if (!this._empty) {
                     return _items[_items.length - 1];
                 } else {
@@ -1618,13 +1618,13 @@ if (!Object.values) {
                 }
             };
 
-            this.push = function(input) {
+            this.push = function (input) {
                 _items.push(input);
                 _character_count += input.length;
                 _empty = false;
             };
 
-            this.pop = function() {
+            this.pop = function () {
                 var item = null;
                 if (!_empty) {
                     item = _items.pop();
@@ -1634,14 +1634,14 @@ if (!Object.values) {
                 return item;
             };
 
-            this.remove_indent = function() {
+            this.remove_indent = function () {
                 if (_indent_count > 0) {
                     _indent_count -= 1;
                     _character_count -= parent.indent_length;
                 }
             };
 
-            this.trim = function() {
+            this.trim = function () {
                 while (this.last() === ' ') {
                     _items.pop();
                     _character_count -= 1;
@@ -1649,7 +1649,7 @@ if (!Object.values) {
                 _empty = _items.length === 0;
             };
 
-            this.toString = function() {
+            this.toString = function () {
                 var result = '';
                 if (!this._empty) {
                     if (_indent_count >= 0) {
@@ -1675,7 +1675,7 @@ if (!Object.values) {
             this.current_line = null;
             this.space_before_token = false;
 
-            this.add_outputline = function() {
+            this.add_outputline = function () {
                 this.previous_line = this.current_line;
                 this.current_line = new OutputLine(this);
                 lines.push(this.current_line);
@@ -1685,12 +1685,12 @@ if (!Object.values) {
             this.add_outputline();
 
 
-            this.get_line_number = function() {
+            this.get_line_number = function () {
                 return lines.length;
             };
 
             // Using object instead of string to allow for later expansion of info about each line
-            this.add_new_line = function(force_newline) {
+            this.add_new_line = function (force_newline) {
                 if (this.get_line_number() === 1 && this.just_added_newline()) {
                     return false; // no newline on start of file
                 }
@@ -1705,12 +1705,12 @@ if (!Object.values) {
                 return false;
             };
 
-            this.get_code = function() {
+            this.get_code = function () {
                 var sweet_code = lines.join('\n').replace(/[\r\n\t ]+$/, '');
                 return sweet_code;
             };
 
-            this.set_indent = function(level) {
+            this.set_indent = function (level) {
                 // Never indent your first output indent at the start of the file
                 if (lines.length > 1) {
                     while (level >= this.indent_cache.length) {
@@ -1724,7 +1724,7 @@ if (!Object.values) {
                 return false;
             };
 
-            this.add_raw_token = function(token) {
+            this.add_raw_token = function (token) {
                 for (var x = 0; x < token.newlines; x++) {
                     this.add_outputline();
                 }
@@ -1733,19 +1733,19 @@ if (!Object.values) {
                 this.space_before_token = false;
             };
 
-            this.add_token = function(printable_token) {
+            this.add_token = function (printable_token) {
                 this.add_space_before_token();
                 this.current_line.push(printable_token);
             };
 
-            this.add_space_before_token = function() {
+            this.add_space_before_token = function () {
                 if (this.space_before_token && !this.just_added_newline()) {
                     this.current_line.push(' ');
                 }
                 this.space_before_token = false;
             };
 
-            this.remove_redundant_indentation = function(frame) {
+            this.remove_redundant_indentation = function (frame) {
                 // This implementation is effective but has some issues:
                 //     - can cause line wrap to happen too soon due to indent removal
                 //           after wrap points are calculated
@@ -1767,7 +1767,7 @@ if (!Object.values) {
                 }
             };
 
-            this.trim = function(eat_newlines) {
+            this.trim = function (eat_newlines) {
                 eat_newlines = (eat_newlines === undefined) ? false : eat_newlines;
 
                 this.current_line.trim(indent_string, baseIndentString);
@@ -1782,11 +1782,11 @@ if (!Object.values) {
                 this.previous_line = lines.length > 1 ? lines[lines.length - 2] : null;
             };
 
-            this.just_added_newline = function() {
+            this.just_added_newline = function () {
                 return this.current_line.is_empty();
             };
 
-            this.just_added_blankline = function() {
+            this.just_added_blankline = function () {
                 if (this.just_added_newline()) {
                     if (lines.length === 1) {
                         return true; // start of the file and newline = blank
@@ -1799,20 +1799,20 @@ if (!Object.values) {
             };
         }
 
-        var InputScanner = function(input) {
+        var InputScanner = function (input) {
             var _input = input;
             var _input_length = _input.length;
             var _position = 0;
 
-            this.back = function() {
+            this.back = function () {
                 _position -= 1;
             };
 
-            this.hasNext = function() {
+            this.hasNext = function () {
                 return _position < _input_length;
             };
 
-            this.next = function() {
+            this.next = function () {
                 var val = null;
                 if (this.hasNext()) {
                     val = _input.charAt(_position);
@@ -1821,7 +1821,7 @@ if (!Object.values) {
                 return val;
             };
 
-            this.peek = function(index) {
+            this.peek = function (index) {
                 var val = null;
                 index = index || 0;
                 index += _position;
@@ -1831,7 +1831,7 @@ if (!Object.values) {
                 return val;
             };
 
-            this.peekCharCode = function(index) {
+            this.peekCharCode = function (index) {
                 var val = 0;
                 index = index || 0;
                 index += _position;
@@ -1841,18 +1841,18 @@ if (!Object.values) {
                 return val;
             };
 
-            this.test = function(pattern, index) {
+            this.test = function (pattern, index) {
                 index = index || 0;
                 pattern.lastIndex = _position + index;
                 return pattern.test(_input);
             };
 
-            this.testChar = function(pattern, index) {
+            this.testChar = function (pattern, index) {
                 var val = this.peek(index);
                 return val !== null && pattern.test(val);
             };
 
-            this.match = function(pattern) {
+            this.match = function (pattern) {
                 pattern.lastIndex = _position;
                 var pattern_match = pattern.exec(_input);
                 if (pattern_match && pattern_match.index === _position) {
@@ -1864,7 +1864,7 @@ if (!Object.values) {
             };
         };
 
-        var Token = function(type, text, newlines, whitespace_before, parent) {
+        var Token = function (type, text, newlines, whitespace_before, parent) {
             this.type = type;
             this.text = text;
 
@@ -1872,7 +1872,7 @@ if (!Object.values) {
             // comments that have a new line before them
             // and may or may not have a newline after
             // this is a set of comments before
-            this.comments_before = /* inline comment*/ [];
+            this.comments_before = /* inline comment*/[];
 
 
             this.comments_after = []; // no new line before and newline after
@@ -1896,7 +1896,7 @@ if (!Object.values) {
             this.positionable_operators = '!=,%,&,&&,*,+,-,/,:,<,<<,<=,==,>,>=,>>,?,??,^,|,||'.split(',');
             var punct = this.positionable_operators.concat(
                 // non-positionable operators - these do not follow operator position settings
-                '! %= &= *= ++ += , -- -= /= :: = => ^= |= ~'.split(' '));
+                '! %= &= *= ++ += , -- -= /= :: = => ^= |= ~ <<= >>='.split(' '));
 
             // words which should always start on new line.
             this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break'.split(',');
@@ -1918,7 +1918,7 @@ if (!Object.values) {
             var n_newlines, whitespace_before_token, in_html_comment, tokens;
             var input;
 
-            this.tokenize = function() {
+            this.tokenize = function () {
                 input = new InputScanner(input_string);
                 in_html_comment = false;
                 tokens = [];
@@ -2090,7 +2090,7 @@ if (!Object.values) {
                     }
 
                     if (!(last_token.type === 'TK_DOT' ||
-                            (last_token.type === 'TK_RESERVED' && in_array(last_token.text, ['set', 'get']))) &&
+                        (last_token.type === 'TK_RESERVED' && in_array(last_token.text, ['set', 'get']))) &&
                         in_array(c, reserved_words)) {
                         if (c === 'in' || c === 'of') { // hack for 'in' and 'of' operators
                             return [c, 'TK_OPERATOR'];
@@ -2193,14 +2193,14 @@ if (!Object.values) {
                         //
                         // handle string
                         //
-                        var parse_string = function(delimiter, allow_unescaped_newlines, start_sub) {
+                        var parse_string = function (delimiter, allow_unescaped_newlines, start_sub) {
                             // Template strings can travers lines without escape characters.
                             // Other strings cannot
                             var current_char;
                             while (input.hasNext()) {
                                 current_char = input.peek();
                                 if (!(esc || (current_char !== delimiter &&
-                                        (allow_unescaped_newlines || !acorn.newline.test(current_char))))) {
+                                    (allow_unescaped_newlines || !acorn.newline.test(current_char))))) {
                                     break;
                                 }
 
@@ -2424,7 +2424,7 @@ if (!Object.values) {
 
     if (typeof define === "function" && define.amd) {
         // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-        define([], function() {
+        define([], function () {
             return { js_beautify: js_beautify };
         });
     } else if (typeof exports !== "undefined") {

@@ -1,3 +1,5 @@
+* v0.0.46
+  * Fix for "<<=" and ">>=" operators.
 * v0.0.45
   * Fix issue for mixed line-endings (\r\n + \n) at one file.
   * Description of issues in README updated.
