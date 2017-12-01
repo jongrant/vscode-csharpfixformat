@@ -11,32 +11,30 @@ class FormatProvider implements vs.DocumentRangeFormattingEditProvider, vs.OnTyp
         return this.processFormatting(document, options);
     }
 
-    private processFormatting(document: vs.TextDocument, options: vs.FormattingOptions) {
-        const result = formatting.process(document.getText(), getFormatOptions(options));
-        const edits: vs.TextEdit[] = [];
-        if (!result.error) {
-            if (result.source) {
+    private async processFormatting(document: vs.TextDocument, options: vs.FormattingOptions) {
+        try {
+            const result = await formatting.process(document.getText(), getFormatOptions(options));
+            const edits: vs.TextEdit[] = [];
+            if (result) {
                 const range = new vs.Range(new vs.Position(0, 0), document.lineAt(document.lineCount - 1).range.end);
-                edits.push(new vs.TextEdit(range, result.source));
+                edits.push(new vs.TextEdit(range, result));
             }
+            return edits;
+        } catch (ex) {
+            vs.window.showWarningMessage(ex);
         }
-        else {
-            vs.window.showWarningMessage(result.error);
-        }
-        return edits;
     }
 }
 
-const formatFolder = (path: vs.Uri) => {
+const formatFolder = async (path: vs.Uri) => {
     const matches = utils.findFiles(path.fsPath, /\.cs$/mi);
     if (matches.length > 0) {
         const formatOptions = getFormatOptions();
         for (const fn of matches) {
             try {
                 const source = fs.readFileSync(fn, 'utf8');
-                const result = formatting.process(source, formatOptions);
-                if (result.error) { throw new Error(result.error); }
-                fs.writeFileSync(fn, result.source, 'utf8');
+                const result = await formatting.process(source, formatOptions);
+                fs.writeFileSync(fn, result, 'utf8');
             } catch (ex) {
                 throw new Error(`${fn} => ${ex}`);
             }
@@ -116,5 +114,4 @@ export function activate(context: vs.ExtensionContext) {
     }));
 }
 
-export function deactivate() {
-}
+export function deactivate() { }
