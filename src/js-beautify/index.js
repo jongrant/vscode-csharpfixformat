@@ -170,7 +170,7 @@ if (!Object.values) {
 
             exports.isIdentifierStart = function (code) {
                 // permit $ (36) and @ (64). @ is used in ES7 decorators.
-                if (code < 65) return code === 36 || code === 64;
+                if (code < 65) return false; //code === 36 || code === 64;
                 // 65 through 91 are uppercase letters.
                 if (code < 91) return true;
                 // permit _ (95).
@@ -2147,123 +2147,63 @@ if (!Object.values) {
 
                 }
 
-                var startXmlRegExp = /<()([-a-zA-Z:0-9_.]+|{[\s\S]+?}|!\[CDATA\[[\s\S]*?\]\])(\s+{[\s\S]+?}|\s+[-a-zA-Z:0-9_.]+|\s+[-a-zA-Z:0-9_.]+\s*=\s*('[^']*'|"[^"]*"|{[\s\S]+?}))*\s*(\/?)\s*>/g;
-
-                if (c === '`' || c === "'" || c === '"' || // string
-                    (
-                        (c === '/') || // regexp
-                        (opts.e4x && c === "<" && input.test(startXmlRegExp, -1)) // xml
-                    ) && ( // regex and xml can only appear in specific locations during parsing
-                        (last_token.type === 'TK_RESERVED' && in_array(last_token.text, ['return', 'case', 'throw', 'else', 'do', 'typeof', 'yield'])) ||
-                        (last_token.type === 'TK_END_EXPR' && last_token.text === ')' &&
-                            last_token.parent && last_token.parent.type === 'TK_RESERVED' && in_array(last_token.parent.text, ['if', 'while', 'for', 'foreach'])) ||
-                        (in_array(last_token.type, ['TK_COMMENT', 'TK_START_EXPR', 'TK_START_BLOCK',
-                            'TK_END_BLOCK', 'TK_OPERATOR', 'TK_EQUALS', 'TK_EOF', 'TK_SEMICOLON', 'TK_COMMA'
-                        ]))
-                    )) {
-
-                    var sep = c,
-                        esc = false,
-                        has_char_escapes = false;
-
+                // char
+                if (c === "'") {
                     resulting_string = c;
-
-                    if (sep === '/') {
-                        //
-                        // handle regexp
-                        //
-                        var in_char_class = false;
-                        while (input.hasNext() &&
-                            ((esc || in_char_class || input.peek() !== sep) &&
-                                !input.testChar(acorn.newline))) {
-                            resulting_string += input.peek();
-                            if (!esc) {
-                                esc = input.peek() === '\\';
-                                if (input.peek() === '[') {
-                                    in_char_class = true;
-                                } else if (input.peek() === ']') {
-                                    in_char_class = false;
-                                }
-                            } else {
-                                esc = false;
-                            }
-                            input.next();
+                    while (input.hasNext()) {
+                        c = input.next();
+                        resulting_string += c;
+                        if (c === '\\') {
+                            if (input.hasNext()) { resulting_string += input.next(); } else { break; }
                         }
-                    } else {
-                        //
-                        // handle string
-                        //
-                        var parse_string = function (delimiter, allow_unescaped_newlines, start_sub) {
-                            // Template strings can travers lines without escape characters.
-                            // Other strings cannot
-                            var current_char;
-                            while (input.hasNext()) {
-                                current_char = input.peek();
-                                if (!(esc || (current_char !== delimiter &&
-                                    (allow_unescaped_newlines || !acorn.newline.test(current_char))))) {
-                                    break;
-                                }
-
-                                // Handle \r\n linebreaks after escapes or in template strings
-                                if ((esc || allow_unescaped_newlines) && acorn.newline.test(current_char)) {
-                                    if (current_char === '\r' && input.peek(1) === '\n') {
-                                        input.next();
-                                        current_char = input.peek();
-                                    }
-                                    resulting_string += '\n';
-                                } else {
-                                    resulting_string += current_char;
-                                }
-
-                                if (esc) {
-                                    if (current_char === 'x' || current_char === 'u') {
-                                        has_char_escapes = true;
-                                    }
-                                    esc = false;
-                                } else {
-                                    esc = current_char === '\\';
-                                }
-
-                                input.next();
-
-                                if (start_sub && resulting_string.indexOf(start_sub, resulting_string.length - start_sub.length) !== -1) {
-                                    if (delimiter === '`') {
-                                        parse_string('}', allow_unescaped_newlines, '`');
-                                    } else {
-                                        parse_string('`', allow_unescaped_newlines, '${');
-                                    }
-
-                                    if (input.hasNext()) {
-                                        resulting_string += input.next();
-                                    }
-                                }
-                            }
-                        };
-
-                        parse_string(sep, true);
-                    }
-
-                    if (has_char_escapes && opts.unescape_strings) {
-                        resulting_string = unescape_string(resulting_string);
-                    }
-
-                    if (input.peek() === sep) {
-                        resulting_string += sep;
-                        input.next();
-
-                        if (sep === '/') {
-                            // regexps may have modifiers /regexp/MOD , so fetch those, too
-                            // Only [gim] are valid, but if the user puts in garbage, do what we can to take it.
-                            while (input.hasNext() && acorn.isIdentifierStart(input.peekCharCode())) {
-                                resulting_string += input.next();
-                            }
-                        }
+                        if (c === "'") { break; }
                     }
                     return [resulting_string, 'TK_STRING'];
                 }
 
-                if (c === '#') {
+                // string
+                if (c === '"' || c === '$' || c === '@') {
+                    resulting_string = '';
+                    while (true) {
+                        resulting_string += c;
+                        if ((c !== '$' && c !== '@') || !input.hasNext()) { break; }
+                        c = input.next();
+                    }
 
+                    var isTempl = resulting_string.indexOf('$') !== -1;
+                    var isEsc = resulting_string.indexOf('@') !== -1;
+
+                    while (input.hasNext()) {
+                        c = input.next();
+                        resulting_string += c;
+                        if (c === '\\') {
+                            if (input.hasNext()) { resulting_string += input.next(); } else { break; }
+                        }
+                        if (c === '"') {
+                            c = input.peek();
+                            if (!isEsc || c !== '"') { break; }
+                            resulting_string += c;
+                            input.next();
+                        }
+                        if (c === '{' && isTempl) {
+                            // string template
+                            var braceLevel = 1;
+                            while (input.hasNext()) {
+                                c = input.next();
+                                resulting_string += c;
+                                if (c === '{') { braceLevel++; }
+                                if (c === '}') {
+                                    braceLevel--;
+                                    if (braceLevel <= 0) { break; }
+                                }
+                            }
+                        }
+                    }
+
+                    return [resulting_string, 'TK_STRING'];
+                }
+
+                if (c === '#') {
                     if (tokens.length === 0 && input.peek() === '!') {
                         // shebang
                         resulting_string = c;
@@ -2273,8 +2213,6 @@ if (!Object.values) {
                         }
                         return [trim(resulting_string) + '\n', 'TK_UNKNOWN'];
                     }
-
-
 
                     // Spidermonkey-specific sharp variables for circular references
                     // https://developer.mozilla.org/En/Sharp_variables_in_JavaScript
@@ -2298,30 +2236,6 @@ if (!Object.values) {
                         }
                         return [sharp, 'TK_WORD'];
                     }
-                }
-
-                if (c === '<' && (input.peek() === '?' || input.peek() === '%')) {
-                    input.back();
-                    var template_match = input.match(template_pattern);
-                    if (template_match) {
-                        c = template_match[0];
-                        c = c.replace(acorn.allLineBreaks, '\n');
-                        return [c, 'TK_STRING'];
-                    }
-                }
-
-                if (c === '<' && input.match(/\!--/g)) {
-                    c = '<!--';
-                    while (input.hasNext() && !input.testChar(acorn.newline)) {
-                        c += input.next();
-                    }
-                    in_html_comment = true;
-                    return [c, 'TK_COMMENT'];
-                }
-
-                if (c === '-' && in_html_comment && input.match(/->/g)) {
-                    in_html_comment = false;
-                    return ['-->', 'TK_COMMENT'];
                 }
 
                 if (c === '.') {
@@ -2350,70 +2264,6 @@ if (!Object.values) {
                 }
 
                 return [c, 'TK_UNKNOWN'];
-            }
-
-
-            function unescape_string(s) {
-                // You think that a regex would work for this
-                // return s.replace(/\\x([0-9a-f]{2})/gi, function(match, val) {
-                //         return String.fromCharCode(parseInt(val, 16));
-                //     })
-                // However, dealing with '\xff', '\\xff', '\\\xff' makes this more fun.
-                var out = '',
-                    escaped = 0;
-
-                var input_scan = new InputScanner(s);
-                var matched = null;
-
-                while (input_scan.hasNext()) {
-                    // Keep any whitespace, non-slash characters
-                    // also keep slash pairs.
-                    matched = input_scan.match(/([\s]|[^\\]|\\\\)+/g);
-
-                    if (matched) {
-                        out += matched[0];
-                    }
-
-                    if (input_scan.peek() === '\\') {
-                        input_scan.next();
-                        if (input_scan.peek() === 'x') {
-                            matched = input_scan.match(/x([0-9A-Fa-f]{2})/g);
-                        } else if (input_scan.peek() === 'u') {
-                            matched = input_scan.match(/u([0-9A-Fa-f]{4})/g);
-                        } else {
-                            out += '\\';
-                            if (input_scan.hasNext()) {
-                                out += input_scan.next();
-                            }
-                            continue;
-                        }
-
-                        // If there's some error decoding, return the original string
-                        if (!matched) {
-                            return s;
-                        }
-
-                        escaped = parseInt(matched[1], 16);
-
-                        if (escaped > 0x7e && escaped <= 0xff && matched[0].indexOf('x') === 0) {
-                            // we bail out on \x7f..\xff,
-                            // leaving whole string escaped,
-                            // as it's probably completely binary
-                            return s;
-                        } else if (escaped >= 0x00 && escaped < 0x20) {
-                            // leave 0x00...0x1f escaped
-                            out += '\\' + matched[0];
-                            continue;
-                        } else if (escaped === 0x22 || escaped === 0x27 || escaped === 0x5c) {
-                            // single-quote, apostrophe, backslash - escape these
-                            out += '\\' + String.fromCharCode(escaped);
-                        } else {
-                            out += String.fromCharCode(escaped);
-                        }
-                    }
-                }
-
-                return out;
             }
         }
 

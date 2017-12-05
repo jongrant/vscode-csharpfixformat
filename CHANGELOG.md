@@ -1,3 +1,5 @@
+* v0.0.47
+  * Fix for interpolation strings detection.
 * v0.0.46
   * Fix for "<<=" and ">>=" operators.
   * Fix indentation for preprocessor directives / regions when tabs uses.
