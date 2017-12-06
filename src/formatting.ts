@@ -102,7 +102,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 });
 
                 // fix number suffixes.
-                content = replaceCode(content, /([^\w])([\d]+) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3, s4) => `${s1}${s2}${s3}${s4}`);
+                content = replaceCode(content, /([^\w])([\d\w]+) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3, s4) => `${s1}${s2}${s3}${s4}`);
 
                 // fix generics.
                 content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;]|<([^>\|\&\{\}\=;]+>))*)>/gm, s => {
