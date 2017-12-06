@@ -1,3 +1,6 @@
+* v0.0.48
+  * Fix for hex strings with number size suffix (e.g. 0x9908b0dfUL).
+  * Fix for "UTF-8 with BOM" encoded files in batch mode (force save to "UTF8 without BOM").
 * v0.0.47
   * Fix for interpolation strings detection.
 * v0.0.46

@@ -32,7 +32,10 @@ const formatFolder = async (path: vs.Uri) => {
         const formatOptions = getFormatOptions();
         for (const fn of matches) {
             try {
-                const source = fs.readFileSync(fn, 'utf8');
+                let source = fs.readFileSync(fn, 'utf8');
+                if (source.charCodeAt(0) === 0xfeff) {
+                    source = source.slice(1);
+                }
                 const result = await formatting.process(source, formatOptions);
                 fs.writeFileSync(fn, result, 'utf8');
             } catch (ex) {
