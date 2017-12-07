@@ -1,3 +1,5 @@
+* v0.0.50
+  * Fix for named parameters detection.
 * v0.0.49
   * Additional fix for numeric constants with size suffix.
 * v0.0.48

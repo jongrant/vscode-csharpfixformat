@@ -184,7 +184,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
 
                 // fix named parameters.
-                content = replaceCode(content, /\( ?[^\?\)]+?\)/gm, s => s.replace(/ :/g, ':'));
+                content = replaceCode(content, /\( ?[^\?\)"]+?\)/gm, s => s.replace(/ :/g, ':'));
             }
 
             if (options.sortUsingsEnabled) {
