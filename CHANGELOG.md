@@ -1,3 +1,5 @@
+* v0.0.51
+  * Fix attributes indentation.
 * v0.0.50
   * Fix for named parameters detection.
 * v0.0.49
