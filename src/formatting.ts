@@ -89,20 +89,24 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 // masking region / endregion directives.
                 content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
+                // fix attributes indentation.
+                content = replaceCode(content, /\n\s+\[/gm, s => `\n\n[`);
+
                 content = beautify(content, beautifyOptions);
 
                 // restore masked preprocessor directives.
-                content = content.replace(/([ \t]*)\/\/ __vscode_pp__/gm, (s: string, s1: string) => {
+                content = content.replace(/([ \t]*)\/\/ __vscode_pp__/gm, (s, s1) => {
                     return options.styleIndentPreprocessorIgnored ? '' : `${s1}`;
                 });
 
                 // restore masked region / endregion directives.
-                content = content.replace(/([ \t]*)\/\/ __vscode_pp_region__/gm, (s: string, s1: string) => {
+                content = content.replace(/([ \t]*)\/\/ __vscode_pp_region__/gm, (s, s1) => {
                     return options.styleIndentRegionIgnored ? '' : `${s1}`;
                 });
 
                 // fix number suffixes.
-                content = replaceCode(content, /([^\w])([\d][\da-fx]*?) (f|d|u|l|m|ul|lu])([^\w])/gmi, (s, s1, s2, s3, s4) => `${s1}${s2}${s3}${s4}`);
+                content = replaceCode(content, /([^\w])([\d][\da-fx]*?) (f|d|u|l|m|ul|lu])([^\w])/gmi,
+                    (s, s1, s2, s3, s4) => `${s1}${s2}${s3}${s4}`);
 
                 // fix generics.
                 content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;]|<([^>\|\&\{\}\=;]+>))*)>/gm, s => {
