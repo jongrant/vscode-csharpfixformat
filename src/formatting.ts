@@ -90,7 +90,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
 
                 // fix attributes indentation.
-                content = replaceCode(content, /\n\s+\[/gm, s => `\n\n[`);
+                content = replaceCode(content, /\}\s*?\n\s*?\[/gm, s => `}\n\n[`);
 
                 content = beautify(content, beautifyOptions);
 
