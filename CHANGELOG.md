@@ -1,3 +1,5 @@
+* v0.0.52
+  * Fix for multiple attributes.
 * v0.0.51
   * Fix attributes indentation.
 * v0.0.50
