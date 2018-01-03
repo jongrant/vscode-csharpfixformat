@@ -189,6 +189,11 @@ export const process = (content: string, options: IFormatConfig): Promise<string
 
                 // fix named parameters.
                 content = replaceCode(content, /\( ?[^\?\)"]+?\)/gm, s => s.replace(/ :/g, ':'));
+
+                // fix do { xxx } while (yyy) with "styleBracesOnSameLine"=false.
+                if (!options.styleBracesOnSameLine) {
+                    content = replaceCode(content, /(^[ \t]*?)do \{/gm, (s, s1) => `${s1}do\n${s1}{`);
+                }
             }
 
             if (options.sortUsingsEnabled) {
