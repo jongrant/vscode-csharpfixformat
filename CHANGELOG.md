@@ -1,3 +1,5 @@
+* v0.0.53
+  * Fix for do_while with "styleBracesOnSameLine"=false.
 * v0.0.52
   * Fix for multiple attributes.
 * v0.0.51
