@@ -1,3 +1,5 @@
+* v0.0.54
+  * Additional fix for nested fields initialization.
 * v0.0.53
   * Fix for do_while with "styleBracesOnSameLine"=false.
 * v0.0.52
