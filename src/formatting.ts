@@ -124,7 +124,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 });
 
                 // fix nested fields initialization.
-                content = replaceCode(content, /(=[^\{}]*?)(\{[^;]*?)(^ *?\};)/gm, (s, s1, s2, s3) => {
+                content = replaceCode(content, /(=[^\{\};]*?)(\{[^;]*?)(^ *?\};)/gm, (s, s1, s2, s3) => {
                     if (/\s(?!@)(public|private|protected|internal|class|struct|interface)\s/gm.test(s2)) {
                         return s;
                     }

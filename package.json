@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.53",
+    "version": "0.0.54",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.18.0"
@@ -146,7 +146,7 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^8.5.2",
+        "@types/node": "^8.5.7",
         "tslint": "^5.8.0",
         "typescript": "^2.6.2",
         "vsce": "^1.35.0",
