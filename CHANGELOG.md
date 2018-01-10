@@ -1,3 +1,5 @@
+* v0.0.55
+  * Fix nullable members access.
 * v0.0.54
   * Additional fix for nested fields initialization.
 * v0.0.53
