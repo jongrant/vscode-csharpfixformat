@@ -1,3 +1,5 @@
+* v0.0.56
+  * Fix #warning preprocessor directive.
 * v0.0.55
   * Fix nullable members access.
 * v0.0.54
