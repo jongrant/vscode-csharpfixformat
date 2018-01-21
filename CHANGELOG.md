@@ -1,3 +1,5 @@
+* v0.0.57
+  * Fix {{ inside interpolation strings.
 * v0.0.56
   * Fix #warning preprocessor directive.
 * v0.0.55
