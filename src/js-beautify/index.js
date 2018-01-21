@@ -2186,15 +2186,18 @@ if (!Object.values) {
                             input.next();
                         }
                         if (c === '{' && isTempl) {
-                            // string template
-                            var braceLevel = 1;
-                            while (input.hasNext()) {
-                                c = input.next();
-                                resulting_string += c;
-                                if (c === '{') { braceLevel++; }
-                                if (c === '}') {
-                                    braceLevel--;
-                                    if (braceLevel <= 0) { break; }
+                            c = input.peek();
+                            if (c !== '{' && c !== '"') {
+                                // string template
+                                var braceLevel = 1;
+                                while (input.hasNext()) {
+                                    c = input.next();
+                                    resulting_string += c;
+                                    if (c === '{') { braceLevel++; }
+                                    if (c === '}') {
+                                        braceLevel--;
+                                        if (braceLevel <= 0) { break; }
+                                    }
                                 }
                             }
                         }
