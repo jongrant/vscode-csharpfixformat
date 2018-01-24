@@ -36,6 +36,7 @@ All features available through standard "format document" hotkey after opening C
 * `csharpfixformat.style.spaces.insideEmptyParenthis`: Space inside '()' - empty parenthis. False by default.
 * `csharpfixformat.style.spaces.insideEmptyBraces`: Space inside '{}' - empty braces. True by default.
 * `csharpfixformat.style.spaces.insideEmptyBrackets`: Space inside '[]' - empty brackets. False by default.
+* `csharpfixformat.style.spaces.removeAfterCommands`: Remove spaces after specified commands. Commands should be splitted with space. "" by default.
 
 
 ## Special flags

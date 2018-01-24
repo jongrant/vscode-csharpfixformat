@@ -20,6 +20,7 @@ export interface IFormatConfig {
     styleSpacesInsideEmptyParenthis: boolean;
     styleSpacesInsideEmptyBraces: boolean;
     styleSpacesInsideEmptyBrackets: boolean;
+    styleSpacesRemoveAfterCommands: string;
 }
 
 export interface IResult {
@@ -37,15 +38,7 @@ const validCodePatterns: RegExp[] = [
     /("(?:[^"\\]|\\.|"")*")/gm
 ];
 
-const validCodeCommentOnlyPatterns: RegExp[] = [
-    /(\/\*\s*?fixformat +ignore:start\s*?\*\/[\s\S]*?\/\*\s*?fixformat +ignore:end\s*?\*\/)/gm,
-    /(\/\*(?:.|\n)*?\*\/)/gm,
-    /(\/\/.*?$)/gm
-];
-
 const validCodePatternString = validCodePatterns.map<string>(r => r.source).join('|');
-
-const validCodeCommentOnlyPatternString = validCodeCommentOnlyPatterns.map<string>(r => r.source).join('|');
 
 const replaceCode = (source: string, condition: RegExp, cb: Func<string, string>): string => {
     const flags = condition.flags.replace(/[gm]/g, '');
@@ -196,6 +189,12 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 // fix do { xxx } while (yyy) with "styleBracesOnSameLine"=false.
                 if (!options.styleBracesOnSameLine) {
                     content = replaceCode(content, /(^[ \t]*?)do \{/gm, (s, s1) => `${s1}do\n${s1}{`);
+                }
+
+                if (options.styleSpacesRemoveAfterCommands) {
+                    const removeExpr = `(${options.styleSpacesRemoveAfterCommands.replace(/ /g, '|')}) `;
+                    const removeRegex = new RegExp(`(${options.styleSpacesRemoveAfterCommands.replace(/ /g, '|')}) `, 'gm');
+                    content = replaceCode(content, removeRegex, (s, s1) => s1);
                 }
             }
 
