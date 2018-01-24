@@ -20,7 +20,7 @@ export interface IFormatConfig {
     styleSpacesInsideEmptyParenthis: boolean;
     styleSpacesInsideEmptyBraces: boolean;
     styleSpacesInsideEmptyBrackets: boolean;
-    styleSpacesRemoveAfterCommands: string;
+    styleSpacesRemoveAfterCommandBeforeParenthesis: string;
 }
 
 export interface IResult {
@@ -191,10 +191,9 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     content = replaceCode(content, /(^[ \t]*?)do \{/gm, (s, s1) => `${s1}do\n${s1}{`);
                 }
 
-                if (options.styleSpacesRemoveAfterCommands) {
-                    const removeExpr = `(${options.styleSpacesRemoveAfterCommands.replace(/ /g, '|')}) `;
-                    const removeRegex = new RegExp(`(${options.styleSpacesRemoveAfterCommands.replace(/ /g, '|')}) `, 'gm');
-                    content = replaceCode(content, removeRegex, (s, s1) => s1);
+                if (options.styleSpacesRemoveAfterCommandBeforeParenthesis) {
+                    const removeRegex = new RegExp(`(${options.styleSpacesRemoveAfterCommandBeforeParenthesis.replace(/ /g, '|')}) \\(`, 'gm');
+                    content = replaceCode(content, removeRegex, (s, s1) => `${s1}(`);
                 }
             }
 

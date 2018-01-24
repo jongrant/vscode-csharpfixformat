@@ -129,10 +129,10 @@
                     "default": false,
                     "description": "Space inside '[]' - empty brackets."
                 },
-                "csharpfixformat.style.spaces.removeAfterCommands": {
+                "csharpfixformat.style.spaces.removeAfterCommandBeforeParenthesis": {
                     "type": "string",
                     "default": "",
-                    "description": "Remove spaces after specified commands. Commands should be splitted with space."
+                    "description": "Remove spaces after specified command and before (. Commands should be splitted with space."
                 }
             }
         }

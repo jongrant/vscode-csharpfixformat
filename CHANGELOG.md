@@ -1,5 +1,5 @@
 * v0.0.58
-  * "style.spaces.removeAfterCommands" option was added.
+  * "style.spaces.removeAfterCommandBeforeParenthesis" option was added.
 * v0.0.57
   * Fix {{ inside interpolation strings.
 * v0.0.56
