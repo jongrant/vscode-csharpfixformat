@@ -73,7 +73,8 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
         styleSpacesAfterBracket: cfg.get<boolean>('style.spaces.afterBracket', true),
         styleSpacesInsideEmptyParenthis: cfg.get<boolean>('style.spaces.insideEmptyParenthis', false),
         styleSpacesInsideEmptyBraces: cfg.get<boolean>('style.spaces.insideEmptyBraces', true),
-        styleSpacesInsideEmptyBrackets: cfg.get<boolean>('style.spaces.insideEmptyBrackets', false)
+        styleSpacesInsideEmptyBrackets: cfg.get<boolean>('style.spaces.insideEmptyBrackets', false),
+        styleSpacesRemoveAfterCommandBeforeParenthesis: cfg.get<string>('style.spaces.removeAfterCommandBeforeParenthesis', '')
     };
 };
 
