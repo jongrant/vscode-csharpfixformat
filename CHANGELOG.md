@@ -1,3 +1,6 @@
+* v0.0.59
+  * Fix inconsistent spacing around parenthesis with "style.spaces.beforeParenthesis"=false and "csharpfixformat.style.spaces.afterParenthesis"=false.
+  * Fix inconsistent spacing around ":" for named parameters.
 * v0.0.58
   * "style.spaces.removeAfterCommandBeforeParenthesis" option was added.
 * v0.0.57
