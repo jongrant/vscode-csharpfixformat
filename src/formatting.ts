@@ -140,6 +140,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     return `>${s1}`;
                 });
 
+                content = replaceCode(content, /( \>)\(/gm, (s, s1) => `${s1} (`);
+
                 // fix opening parenthesis.
                 if (options.styleSpacesBeforeParenthesis) {
                     content = replaceCode(content, /([\w\)\]\>])\(/gm, (s, s1) => `${s1} (`);
@@ -153,6 +155,9 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 // fix closing parenthesis.
                 if (options.styleSpacesAfterParenthesis) {
                     content = replaceCode(content, /\)([\w\(\[])/gm, (s, s1) => `) ${s1}`);
+                } else {
+                    // "void Test () {" case.
+                    content = replaceCode(content, /\) ([^\{])/gm, (s, s1) => `)${s1}`);
                 }
 
                 // fix closing bracket.
@@ -180,8 +185,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 const spaceBefore = options.styleSpacesBeforeParenthesis ? ' ' : '';
                 content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
 
-                // fix named parameters.
-                content = replaceCode(content, /\( ?[^\?\)"]+?\)/gm, s => s.replace(/ :/g, ':'));
+                // fix named parameters. [^\?;,"]+(, \?\w+?: [^\?;:,"]+?)*
+                content = replaceCode(content, /\(\w+ : [^\?;,:\n]+(, \w+ : [^\?;,:\n]+)*/gm, s => s.replace(/ :/g, ':'));
 
                 // fix nullable members access.
                 content = replaceCode(content, / \? ([\.;])/gm, (s, s1) => `?${s1}`);
