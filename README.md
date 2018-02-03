@@ -20,7 +20,7 @@ All features available through standard "format document" hotkey after opening C
 
 ## Extension Settings
 * `csharpfixformat.sort.usings.enabled`: Should usings be sorted or not. True by default.
-* `csharpfixformat.sort.usings.systemFirst`: Put System.xxx namespaces first at usings list on sorting. True by default.
+* `sort.usings.order`: Put namespaces in proper order. Values should be splitted with space. "System" by default.
 * `csharpfixformat.sort.usings.splitGroups`: Insert blank line between using blocks grouped by first part of namespace. False by default.
 * `csharpfixformat.style.enabled`: Enable code reformat with style options. True by default.
 * `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.

@@ -58,7 +58,7 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
         useTabs: !options.insertSpaces,
         tabSize: options.tabSize,
         sortUsingsEnabled: cfg.get<boolean>('sort.usings.enabled', true),
-        sortUsingsSystemFirst: cfg.get<boolean>('sort.usings.systemFirst', true),
+        sortUsingsOrder: cfg.get<string>('sort.usings.order', 'System'),
         sortUsingsSplitGroups: cfg.get<boolean>('sort.usings.splitGroups', false),
         styleEnabled: cfg.get<boolean>('style.enabled', true),
         styleNewLineMaxAmount: cfg.get<number>('style.newline.maxAmount', 0),
