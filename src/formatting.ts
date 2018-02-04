@@ -4,7 +4,7 @@ export interface IFormatConfig {
     useTabs: boolean;
     tabSize: number;
     sortUsingsEnabled: boolean;
-    sortUsingsSystemFirst: boolean;
+    sortUsingsOrder: string;
     sortUsingsSplitGroups: boolean;
     styleEnabled: boolean;
     styleNewLineMaxAmount: number;
@@ -49,6 +49,11 @@ const replaceCode = (source: string, condition: RegExp, cb: Func<string, string>
         }
         return cb(s, ...args.slice(validCodePatterns.length + 1));
     });
+};
+
+const GetNamespaceOrder = (ns: string, orderedNames: string[]): number => {
+    const idx = orderedNames.indexOf(ns);
+    return idx === -1 ? 0 : orderedNames.length - idx;
 };
 
 export const process = (content: string, options: IFormatConfig): Promise<string> => {
@@ -211,9 +216,10 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                         // because we keep lines with indentation and semicolons.
                         a = a.replace(trimSemiColon, '');
                         b = b.replace(trimSemiColon, '');
-                        if (options.sortUsingsSystemFirst) {
-                            if (a.indexOf('System') === 6) { res--; }
-                            if (b.indexOf('System') === 6) { res++; }
+                        if (options.sortUsingsOrder) {
+                            const ns = options.sortUsingsOrder.split(' ');
+                            res -= GetNamespaceOrder(a.substr(6), ns);
+                            res += GetNamespaceOrder(b.substr(6), ns);
                             if (res !== 0) {
                                 return res;
                             }

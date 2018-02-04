@@ -1,3 +1,5 @@
+* v0.0.60
+  * "sort.usings.systemFirst" deprecated, use "sort.usings.order" instead.
 * v0.0.59
   * Fix inconsistent spacing around parenthesis with "style.spaces.beforeParenthesis"=false and "csharpfixformat.style.spaces.afterParenthesis"=false.
   * Fix inconsistent spacing around ":" for named parameters.
