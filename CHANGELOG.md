@@ -1,3 +1,5 @@
+* v0.0.61
+  * Fix #undef preprocessor directive.
 * v0.0.60
   * "sort.usings.systemFirst" deprecated, use "sort.usings.order" instead.
 * v0.0.59

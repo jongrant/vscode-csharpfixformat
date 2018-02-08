@@ -82,7 +82,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = content.replace(/\r\n/g, '\n');
 
                 // masking preprocessor directives for beautifier - no builtin support for them.
-                content = replaceCode(content, /#(?:define|if|else|elif|endif|pragma|warning)/gm, s => `// __vscode_pp__${s}`);
+                content = replaceCode(content, /#(?:define|undef|if|else|elif|endif|pragma|warning)/gm, s => `// __vscode_pp__${s}`);
 
                 // masking region / endregion directives.
                 content = replaceCode(content, /#(region|endregion)/gm, s => `// __vscode_pp_region__${s}`);
