@@ -1,3 +1,5 @@
+* 0.0.62
+  * "csharpfixformat.style.operators.onSameLine" option was added.
 * v0.0.61
   * Fix #undef preprocessor directive.
 * v0.0.60
