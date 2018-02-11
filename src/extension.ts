@@ -74,7 +74,8 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
         styleSpacesInsideEmptyParenthis: cfg.get<boolean>('style.spaces.insideEmptyParenthis', false),
         styleSpacesInsideEmptyBraces: cfg.get<boolean>('style.spaces.insideEmptyBraces', true),
         styleSpacesInsideEmptyBrackets: cfg.get<boolean>('style.spaces.insideEmptyBrackets', false),
-        styleSpacesRemoveAfterCommandBeforeParenthesis: cfg.get<string>('style.spaces.removeAfterCommandBeforeParenthesis', '')
+        styleSpacesRemoveAfterCommandBeforeParenthesis: cfg.get<string>('style.spaces.removeAfterCommandBeforeParenthesis', ''),
+        styleOperatorsOnSameLine: cfg.get<boolean>('style.operators.onSameLine', true)
     };
 };
 

@@ -21,6 +21,7 @@ export interface IFormatConfig {
     styleSpacesInsideEmptyBraces: boolean;
     styleSpacesInsideEmptyBrackets: boolean;
     styleSpacesRemoveAfterCommandBeforeParenthesis: string;
+    styleOperatorsOnSameLine: boolean;
 }
 
 export interface IResult {
@@ -75,7 +76,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     space_after_anon_function: true,
                     space_in_empty_paren: true,
                     keep_array_indentation: false,
-                    e4x: false
+                    e4x: false,
+                    operator_position: options.styleOperatorsOnSameLine ? 'before-newline' : 'after-newline'
                 };
 
                 // fix mixed line-endings issue.

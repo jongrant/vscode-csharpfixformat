@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.61",
+    "version": "0.0.62",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.19.0"
@@ -133,6 +133,11 @@
                     "type": "string",
                     "default": "",
                     "description": "Remove spaces after specified command and before (. Commands should be splitted with space."
+                },
+                "csharpfixformat.style.operators.onSameLine": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should operators be kept on expression line or on new line for multilined expressions."
                 }
             }
         }
@@ -151,7 +156,7 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^9.4.2",
+        "@types/node": "^9.4.5",
         "tslint": "^5.9.1",
         "typescript": "^2.7.1",
         "vsce": "^1.36.2",
