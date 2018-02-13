@@ -53,8 +53,14 @@ const replaceCode = (source: string, condition: RegExp, cb: Func<string, string>
 };
 
 const GetNamespaceOrder = (ns: string, orderedNames: string[]): number => {
-    const idx = orderedNames.indexOf(ns);
-    return idx === -1 ? 0 : orderedNames.length - idx;
+    for (let i = 0; i < orderedNames.length; i++) {
+        const item = orderedNames[i];
+        let nsTest = item.length < ns.length ? ns.substr(0, item.length) : ns;
+        if (item === nsTest) {
+            return orderedNames.length - i;
+        }
+    }
+    return 0;
 };
 
 export const process = (content: string, options: IFormatConfig): Promise<string> => {
