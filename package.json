@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.62",
+    "version": "0.0.63",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.19.0"
