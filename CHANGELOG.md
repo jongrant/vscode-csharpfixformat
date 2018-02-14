@@ -1,3 +1,5 @@
+* 0.0.64
+  * Fix #error preprocessor directive.
 * 0.0.63
   * Fix "sort.usings.order" issue on multiple lines with different lengths.
 * 0.0.62
