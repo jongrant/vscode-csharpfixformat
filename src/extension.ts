@@ -117,6 +117,9 @@ export function activate(context: vs.ExtensionContext) {
             vs.window.showInformationMessage('[C#FixFormat] Use folder context menu (explorer window) for command processing.');
         }
     }));
+    context.subscriptions.push(vs.commands.registerCommand('csharpfixformat.API_getFormatter', async () => {
+        return new FormatProvider();
+    }));
 }
 
 export function deactivate() { }
