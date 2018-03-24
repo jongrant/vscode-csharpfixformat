@@ -19,8 +19,7 @@
     ],
     "activationEvents": [
         "onLanguage:csharp",
-        "onCommand:csharpfixformat.formatFolder",
-        "onCommand:csharpfixformat.API_getFormatter"
+        "onCommand:csharpfixformat.formatFolder"
     ],
     "author": {
         "name": "Leopotam",
@@ -32,10 +31,6 @@
             {
                 "command": "csharpfixformat.formatFolder",
                 "title": "C#FixFormat: format C# files"
-            },
-            {
-                "command": "csharpfixformat.API_getFormatter",
-                "title": "C#FixFormat: [API] get new formatter instance"
             }
         ],
         "menus": {
