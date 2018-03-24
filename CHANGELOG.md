@@ -1,3 +1,5 @@
+* 0.0.65
+  * Export api object { process, getOptions } through extension.exports.
 * 0.0.64
   * Fix #error preprocessor directive.
 * 0.0.63
