@@ -23,11 +23,13 @@ All features available through standard "format document" hotkey after opening C
 * `sort.usings.order`: Put namespaces in proper order. Values should be splitted with space. "System" by default.
 * `csharpfixformat.sort.usings.splitGroups`: Insert blank line between using blocks grouped by first part of namespace. False by default.
 * `csharpfixformat.style.enabled`: Enable code reformat with style options. True by default.
-* `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
-* `csharpfixformat.style.indent.preprocessorIgnored`: Should preprocessor directives ignore indentation or use it. True by default.
-* `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
 * `csharpfixformat.style.braces.onSameLine`: Should open braces be kept on expression line (K&R style) or on new line. True by default.
 * `csharpfixformat.style.braces.allowInlines`: Allow expressions inside braces at one line. True by default.
+* `csharpfixformat.style.indent.preprocessorIgnored`: Should preprocessor directives ignore indentation or use it. True by default.
+* `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
+* `csharpfixformat.style.newline.atEnd`: Force adds new empty line at end. False by default.
+* `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
+* `csharpfixformat.style.operators.onSameLine`: Should operators be kept on expression line or on new line for multilined expressions. True by default.
 * `csharpfixformat.style.spaces.beforeParenthesis`: Space before '(' - opening parenthesis. True by default.
 * `csharpfixformat.style.spaces.afterParenthesis`: Space after ')' - closing parenthesis. True by default.
 * `csharpfixformat.style.spaces.beforeIndexerBracket`: Override spaces.beforeBracket rule for indexer sequence 'this['. True by default.
@@ -37,8 +39,6 @@ All features available through standard "format document" hotkey after opening C
 * `csharpfixformat.style.spaces.insideEmptyBraces`: Space inside '{}' - empty braces. True by default.
 * `csharpfixformat.style.spaces.insideEmptyBrackets`: Space inside '[]' - empty brackets. False by default.
 * `csharpfixformat.style.spaces.removeAfterCommandBeforeParenthesis`: Remove spaces after specified command and before (. Commands should be splitted with space. "" by default.
-* `csharpfixformat.style.operators.onSameLine`: Should operators be kept on expression line or on new line for multilined expressions. True by default.
-
 
 ## Special flags
 Formatting can be ignored for any code with wrapping to directives:

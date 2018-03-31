@@ -8,6 +8,7 @@ export interface IFormatConfig {
     sortUsingsSplitGroups: boolean;
     styleEnabled: boolean;
     styleNewLineMaxAmount: number;
+    styleNewLineAtEnd: boolean;
     styleIndentPreprocessorIgnored: boolean;
     styleIndentRegionIgnored: boolean;
     styleBracesOnSameLine: boolean;
@@ -267,6 +268,11 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     }
                     return items.join('\n');
                 });
+            }
+            if (options.styleNewLineAtEnd) {
+                if (content) {
+                    content += '\n';
+                }
             }
             resolve(content);
         } catch (ex) {
