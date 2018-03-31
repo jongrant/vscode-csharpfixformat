@@ -1,3 +1,5 @@
+* v0.0.66
+  * "style.newline.atEnd" option was added.
 * 0.0.65
   * Export api object { process, getOptions } through extension.exports.
 * 0.0.64

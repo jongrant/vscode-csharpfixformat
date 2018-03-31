@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.65",
+    "version": "0.0.66",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.21.0"
@@ -64,10 +64,15 @@
                     "default": true,
                     "description": "Enable code reformat with style options."
                 },
-                "csharpfixformat.style.newline.maxAmount": {
-                    "type": "number",
-                    "default": 2,
-                    "description": "Amount of new line (\\n) symbols allowed in row. 1 means no blank lines. Use 0 for disable."
+                "csharpfixformat.style.braces.onSameLine": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should open braces be kept on expression line (K&R style) or on new line."
+                },
+                "csharpfixformat.style.braces.allowInlines": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Allow expressions inside braces at one line."
                 },
                 "csharpfixformat.style.indent.preprocessorIgnored": {
                     "type": "boolean",
@@ -79,15 +84,20 @@
                     "default": false,
                     "description": "Should #region / #endregion directives ignore indentation or use it."
                 },
-                "csharpfixformat.style.braces.onSameLine": {
+                "csharpfixformat.style.newline.atEnd": {
                     "type": "boolean",
-                    "default": true,
-                    "description": "Should open braces be kept on expression line (K&R style) or on new line."
+                    "default": false,
+                    "description": "Force adds new empty line at end."
                 },
-                "csharpfixformat.style.braces.allowInlines": {
+                "csharpfixformat.style.newline.maxAmount": {
+                    "type": "number",
+                    "default": 2,
+                    "description": "Amount of new line (\\n) symbols allowed in row. 1 means no blank lines. Use 0 for disable."
+                },
+                "csharpfixformat.style.operators.onSameLine": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Allow expressions inside braces at one line."
+                    "description": "Should operators be kept on expression line or on new line for multilined expressions."
                 },
                 "csharpfixformat.style.spaces.beforeParenthesis": {
                     "type": "boolean",
@@ -133,11 +143,6 @@
                     "type": "string",
                     "default": "",
                     "description": "Remove spaces after specified command and before (. Commands should be splitted with space."
-                },
-                "csharpfixformat.style.operators.onSameLine": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Should operators be kept on expression line or on new line for multilined expressions."
                 }
             }
         }
@@ -156,9 +161,9 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^9.6.0",
+        "@types/node": "^9.6.1",
         "tslint": "^5.9.1",
-        "typescript": "^2.7.2",
+        "typescript": "^2.8.1",
         "vsce": "^1.37.6",
         "vscode": "^1.1.14"
     },
