@@ -1,3 +1,5 @@
+* v0.0.67
+  * C#7 "numbers with underscores" support (10_000_000).
 * v0.0.66
   * "style.newline.atEnd" option was added.
 * 0.0.65

@@ -7,6 +7,10 @@
 # CSharpFixFormat for Visual Studio Code
 This extension helps to format C# code. When OmniSharp will support all features - will be deprecated.
 
+> C#5 / C#6 / C#7 support limited and some features not implemented, because main goal of this extension - formatting C#3.5 / C#4 sources of UnityEngine projects on MacOS, nothing more.
+
+> If you need full format support of last C# version - better to write issue about proper formatting at [Omnisharp extension repo](https://github.com/OmniSharp/omnisharp-vscode/issues).
+
 ## Dependencies
 This extension not dependent on any 3dparty extensions (even omnisharp) and works as standalone formatting solution for current C#-file.
 
