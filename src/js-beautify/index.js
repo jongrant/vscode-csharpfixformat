@@ -1888,9 +1888,10 @@ if (!Object.values) {
 
             var whitespace = "\n\r\t ".split('');
             var digit = /[0-9]/;
-            var digit_bin = /[01]/;
+            var digit_underscore = /[0-9_]/;
+            var digit_bin = /[01_]/;
             var digit_oct = /[01234567]/;
-            var digit_hex = /[0123456789abcdefABCDEF]/;
+            var digit_hex = /[0123456789abcdefABCDEF_]/;
 
             // Leopotam fix. "??" was added.
             this.positionable_operators = '!=,%,&,&&,*,+,-,/,:,<,<<,<=,==,>,>=,>>,?,??,^,|,||'.split(',');
@@ -2031,7 +2032,7 @@ if (!Object.values) {
                 if (digit.test(c) || (c === '.' && input.testChar(digit))) {
                     var allow_decimal = true;
                     var allow_e = true;
-                    var local_digit = digit;
+                    var local_digit = digit_underscore;
 
                     if (c === '0' && input.testChar(/[XxOoBb]/)) {
                         // switch to hex/oct/bin number, no decimal or e, just hex/oct/bin digits

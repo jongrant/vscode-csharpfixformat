@@ -6,10 +6,10 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.66",
+    "version": "0.0.67",
     "publisher": "Leopotam",
     "engines": {
-        "vscode": "^1.21.0"
+        "vscode": "^1.22.0"
     },
     "categories": [
         "Formatters",
@@ -161,10 +161,10 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^9.6.1",
+        "@types/node": "^9.6.2",
         "tslint": "^5.9.1",
         "typescript": "^2.8.1",
-        "vsce": "^1.37.6",
+        "vsce": "^1.39.0",
         "vscode": "^1.1.14"
     },
     "license": "MIT",
