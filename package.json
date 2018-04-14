@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.67",
+    "version": "0.0.68",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.22.0"
@@ -83,6 +83,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Should #region / #endregion directives ignore indentation or use it."
+                },
+                "csharpfixformat.style.indent.switchCaseIgnored": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should switch cases ignore indentation or use it."
                 },
                 "csharpfixformat.style.newline.atEnd": {
                     "type": "boolean",
@@ -161,7 +166,7 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^9.6.2",
+        "@types/node": "^9.6.5",
         "tslint": "^5.9.1",
         "typescript": "^2.8.1",
         "vsce": "^1.39.0",

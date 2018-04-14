@@ -31,6 +31,7 @@ All features available through standard "format document" hotkey after opening C
 * `csharpfixformat.style.braces.allowInlines`: Allow expressions inside braces at one line. True by default.
 * `csharpfixformat.style.indent.preprocessorIgnored`: Should preprocessor directives ignore indentation or use it. True by default.
 * `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
+* `csharpfixformat.style.indent.switchCaseIgnored`: Should switch cases ignore indentation or use it. False by default.
 * `csharpfixformat.style.newline.atEnd`: Force adds new empty line at end. False by default.
 * `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
 * `csharpfixformat.style.operators.onSameLine`: Should operators be kept on expression line or on new line for multilined expressions. True by default.
