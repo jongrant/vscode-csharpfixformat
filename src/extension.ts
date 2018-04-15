@@ -65,6 +65,7 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
         styleNewLineAtEnd: cfg.get<boolean>('style.newline.atEnd', false),
         styleIndentPreprocessorIgnored: cfg.get<boolean>('style.indent.preprocessorIgnored', true),
         styleIndentRegionIgnored: cfg.get<boolean>('style.indent.regionIgnored', false),
+        styleIndentSwitchCaseIgnored: cfg.get<boolean>('style.indent.switchCaseIgnored', false),
         styleBracesOnSameLine: cfg.get<boolean>('style.braces.onSameLine', true),
         styleBracesAllowInlines: cfg.get<boolean>('style.braces.allowInlines', true),
         styleSpacesBeforeParenthesis: cfg.get<boolean>('style.spaces.beforeParenthesis', true),

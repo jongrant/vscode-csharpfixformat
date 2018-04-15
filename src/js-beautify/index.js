@@ -359,6 +359,7 @@ if (!Object.values) {
             opt.end_with_newline = (options.end_with_newline === undefined) ? false : options.end_with_newline;
             opt.comma_first = (options.comma_first === undefined) ? false : options.comma_first;
             opt.operator_position = sanitizeOperatorPosition(options.operator_position);
+            opt.switch_case_indent_ignored = !!options.switch_case_indent_ignored;
 
             // For testing of beautify ignore:start directive
             opt.test_output_raw = (options.test_output_raw === undefined) ? false : options.test_output_raw;
@@ -1047,7 +1048,7 @@ if (!Object.values) {
 
                 if (current_token.type === 'TK_RESERVED' && (current_token.text === 'case' || (current_token.text === 'default' && flags.in_case_statement))) {
                     print_newline();
-                    if (flags.case_body || opt.jslint_happy) {
+                    if (flags.case_body || opt.switch_case_indent_ignored) {
                         // switch cases following one another
                         deindent();
                         flags.case_body = false;

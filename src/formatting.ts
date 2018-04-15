@@ -11,6 +11,7 @@ export interface IFormatConfig {
     styleNewLineAtEnd: boolean;
     styleIndentPreprocessorIgnored: boolean;
     styleIndentRegionIgnored: boolean;
+    styleIndentSwitchCaseIgnored: boolean;
     styleBracesOnSameLine: boolean;
     styleBracesAllowInlines: boolean;
     styleSpacesBeforeParenthesis: boolean;
@@ -84,7 +85,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     space_in_empty_paren: true,
                     keep_array_indentation: false,
                     e4x: false,
-                    operator_position: options.styleOperatorsOnSameLine ? 'before-newline' : 'after-newline'
+                    operator_position: options.styleOperatorsOnSameLine ? 'before-newline' : 'after-newline',
+                    switch_case_indent_ignored: options.styleIndentSwitchCaseIgnored
                 };
 
                 // fix mixed line-endings issue.
