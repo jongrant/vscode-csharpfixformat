@@ -33,6 +33,7 @@ All features available through standard "format document" hotkey after opening C
 * `csharpfixformat.style.indent.regionIgnored`: Should #region / #endregion directives ignore indentation or use it. False by default.
 * `csharpfixformat.style.indent.switchCaseIgnored`: Should switch cases ignore indentation or use it. False by default.
 * `csharpfixformat.style.newline.atEnd`: Force adds new empty line at end. False by default.
+* `csharpfixformat.style.newline.elseCatch`: Force places else / catch expression to new line. False by default.
 * `csharpfixformat.style.newline.maxAmount`: Amount of new line (\\n) symbols allowed in row. 1 means no blank lines, 0 for disable. 2 by default.
 * `csharpfixformat.style.operators.onSameLine`: Should operators be kept on expression line or on new line for multilined expressions. True by default.
 * `csharpfixformat.style.spaces.beforeParenthesis`: Space before '(' - opening parenthesis. True by default.

@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.68",
+    "version": "0.0.69",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.22.0"
@@ -94,6 +94,11 @@
                     "default": false,
                     "description": "Force adds new empty line at end."
                 },
+                "csharpfixformat.style.newline.elseCatch": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Force places else / catch expression to new line."
+                },
                 "csharpfixformat.style.newline.maxAmount": {
                     "type": "number",
                     "default": 2,
@@ -166,9 +171,9 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^9.6.5",
+        "@types/node": "^9.6.6",
         "tslint": "^5.9.1",
-        "typescript": "^2.8.1",
+        "typescript": "^2.8.3",
         "vsce": "^1.39.0",
         "vscode": "^1.1.14"
     },
