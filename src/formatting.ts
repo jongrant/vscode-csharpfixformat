@@ -9,6 +9,7 @@ export interface IFormatConfig {
     styleEnabled: boolean;
     styleNewLineMaxAmount: number;
     styleNewLineAtEnd: boolean;
+    styleNewLineElseCatch: boolean;
     styleIndentPreprocessorIgnored: boolean;
     styleIndentRegionIgnored: boolean;
     styleIndentSwitchCaseIgnored: boolean;
@@ -215,6 +216,11 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 if (options.styleSpacesRemoveAfterCommandBeforeParenthesis) {
                     const removeRegex = new RegExp(`(${options.styleSpacesRemoveAfterCommandBeforeParenthesis.replace(/ /g, '|')}) \\(`, 'gm');
                     content = replaceCode(content, removeRegex, (s, s1) => `${s1}(`);
+                }
+
+                // put else / catch expression force on new line with "styleNewLineElseCatch"=true.
+                if (options.styleNewLineElseCatch) {
+                    content = replaceCode(content, /(^[ \t]*?)\} (else|catch)/gm, (s, s1, s2) => `${s1}}\n${s1}${s2}`);
                 }
             }
 

@@ -1,3 +1,5 @@
+* v0.0.69
+  * "style.newline.elseCatch" option was added.
 * v0.0.68
   * "style.indent.switchCaseIgnored" option was added.
 * v0.0.67

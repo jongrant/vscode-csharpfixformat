@@ -63,6 +63,7 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
         styleEnabled: cfg.get<boolean>('style.enabled', true),
         styleNewLineMaxAmount: cfg.get<number>('style.newline.maxAmount', 0),
         styleNewLineAtEnd: cfg.get<boolean>('style.newline.atEnd', false),
+        styleNewLineElseCatch: cfg.get<boolean>('style.newline.elseCatch', false),
         styleIndentPreprocessorIgnored: cfg.get<boolean>('style.indent.preprocessorIgnored', true),
         styleIndentRegionIgnored: cfg.get<boolean>('style.indent.regionIgnored', false),
         styleIndentSwitchCaseIgnored: cfg.get<boolean>('style.indent.switchCaseIgnored', false),
