@@ -121,3 +121,8 @@ Use instructions from marketplace.
 2. Run "npm install" from project folder.
 3. Run "npm run package" from project folder.
 4. Install brand new packed *.vsix bundle through vscode plugins menu option "Install from VSIX".
+
+## Сoexistence with the `omnisharp-vscode` extension
+On each run this extension checks that `omnisharp-vscode` extension (if installed) will use `"csharp.format.enable": false` option for disabling builtin format feature. This extension *will not work correctly* with activated `omnisharp-vscode` format feature - it's why user should fix option manually or automatically with autofix suggestion.
+
+After removing the extension, *user should manually restores* this option to `"onisharp-vscode": true` for enabling format feature and restart editor then.
