@@ -1,3 +1,6 @@
+* v0.0.70
+  * README updated: info about omnisharp-vscode extension added.
+  * Marketplace tags updated.
 * v0.0.69
   * "style.newline.elseCatch" option was added.
 * v0.0.68
