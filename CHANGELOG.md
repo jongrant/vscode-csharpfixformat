@@ -1,3 +1,5 @@
+* v0.0.71
+  * Fix inconsistent spacing around ":" for multilined named parameters. String consts as field values are not supported!
 * v0.0.70
   * README updated: info about omnisharp-vscode extension added.
   * Marketplace tags updated.

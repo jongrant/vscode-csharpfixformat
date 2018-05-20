@@ -202,8 +202,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 const spaceBefore = options.styleSpacesBeforeParenthesis ? ' ' : '';
                 content = replaceCode(content, /operator ?([^ \(]+) ?\(/gm, (s, s1) => `operator ${s1}${spaceBefore}(`);
 
-                // fix named parameters. [^\?;,"]+(, \?\w+?: [^\?;:,"]+?)*
-                content = replaceCode(content, /\(\w+ : [^\?;,:\n]+(, \w+ : [^\?;,:\n]+)*/gm, s => s.replace(/ :/g, ':'));
+                // fix named parameters.
+                content = replaceCode(content, /\([\n \t]*?\w+ : [^\?;,:\n]+(,[ \t\n]+\w+ : [^\?;,:\n]+)*/gm, s => s.replace(/ :/g, ':'));
 
                 // fix nullable members access.
                 content = replaceCode(content, / \? ([\.;])/gm, (s, s1) => `?${s1}`);
