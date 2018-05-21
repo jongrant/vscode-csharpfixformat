@@ -112,6 +112,33 @@ new System.Collections.Generic.Dictionary<string, string>() {
     { "", "" },
 };
 ```
+---
+### Named parameters with string consts as values can be formatted wrong:
+*Expected:*
+```
+var test = Test(
+    name: "Test name",
+    amount: 1,
+    type: TestType.Type1
+    );
+```
+*Actual:*
+```
+var test = Test(
+    name : "Test name",
+    amount : 1,
+    type : TestType.Type1
+    );
+```
+*Suggestion* - extract string values as consts:
+```
+const string TestName = "Test name";
+var test = Test(
+    name: TestName,
+    amount: 1,
+    type: TestType.Type1
+    );
+```
 ## Installation of release version
 Use instructions from marketplace.
 
