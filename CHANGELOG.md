@@ -1,3 +1,6 @@
+* v0.0.72
+  * Fix issue on "csharpfixformat.style.spaces.afterParenthesis"=false and next "&&" / "||" / "==".
+  * Fix issue on verbatim strings with invalid multiline splitting.
 * v0.0.71
   * Fix inconsistent spacing around ":" for multilined named parameters. String consts as field values are not supported!
 * v0.0.70

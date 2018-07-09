@@ -173,8 +173,8 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 if (options.styleSpacesAfterParenthesis) {
                     content = replaceCode(content, /\)([\w\(\[])/gm, (s, s1) => `) ${s1}`);
                 } else {
-                    // "void Test () {" case.
-                    content = replaceCode(content, /\) ([^\{])/gm, (s, s1) => `)${s1}`);
+                    // #50 - removing space after cast.
+                    content = replaceCode(content, /\) ([\w\(])/gm, (s, s1) => `)${s1}`);
                 }
 
                 // fix closing bracket.
