@@ -174,8 +174,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     content = replaceCode(content, /\)([\w\(\[])/gm, (s, s1) => `) ${s1}`);
                 } else {
                     // #50 - removing space after cast.
-                    // #80: "void Test() {" case, &&, ||, ==, etc
-                    content = replaceCode(content, /\) ([^\{&|=])/gm, (s, s1) => `)${s1}`);
+                    content = replaceCode(content, /\) ([\w\(])/gm, (s, s1) => `)${s1}`);
                 }
 
                 // fix closing bracket.
