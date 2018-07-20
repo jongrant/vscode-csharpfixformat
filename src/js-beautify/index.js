@@ -712,7 +712,7 @@ if (!Object.values) {
 
             function is_special_word(word) {
                 // Leopotam fix. "yield" was added.
-                return in_array(word, ['case', 'return', 'do', 'if', 'throw', 'else', 'yield']);
+                return in_array(word, ['case', 'return', 'do', 'if', 'throw', 'else', 'yield', 'goto']);
             }
 
             function get_token(offset) {
@@ -1046,7 +1046,7 @@ if (!Object.values) {
                     }
                 }
 
-                if (current_token.type === 'TK_RESERVED' && (current_token.text === 'case' || (current_token.text === 'default' && flags.in_case_statement))) {
+                if (current_token.type === 'TK_RESERVED' && (current_token.text === 'case' || (current_token.text === 'default' && flags.in_case_statement)) && flags.last_text !== 'goto') {
                     print_newline();
                     if (flags.case_body || opt.switch_case_indent_ignored) {
                         // switch cases following one another
@@ -1903,7 +1903,7 @@ if (!Object.values) {
             // words which should always start on new line.
             this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break'.split(',');
             // Leopotam fix. "is", "out" were added. "default" and "const" moved from line_starters.
-            var reserved_words = this.line_starters.concat('do,in,out,of,else,get,set,new,catch,finally,typeof,sizeof,nameof,yield,async,await,from,as,is,default,const'.split(','));
+            var reserved_words = this.line_starters.concat('do,in,out,of,else,get,set,new,catch,finally,typeof,sizeof,nameof,yield,async,await,from,as,is,default,const,goto'.split(','));
 
             //  /* ... */ comment ends with nearest */ or end of file
             var block_comment_pattern = /([\s\S]*?)((?:\*\/)|$)/g;

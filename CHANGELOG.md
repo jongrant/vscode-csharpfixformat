@@ -1,3 +1,5 @@
+* v0.0.73
+  * Fix "goto" behaviour. **SHAME ON ME** for this, this operator should be banned 10 years ago...
 * v0.0.72
   * Fix issue on "csharpfixformat.style.spaces.afterParenthesis"=false and next "&&" / "||" / "==".
   * Fix issue on verbatim strings with invalid multiline splitting.
