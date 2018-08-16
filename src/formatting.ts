@@ -119,9 +119,12 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     (s, s1, s2, s3, s4) => `${s1}${s2}${s3}${s4}`);
 
                 // fix generics.
-                content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;]|<([^>\|\&\{\}\=;]+>))*)>/gm, s => {
+                content = replaceCode(content, /\w\s*?\<((?:[^<>\|\&\{\}\=;\(\)]|<([^>\|\&\{\}\=;\(\)]+>))*)>/gm, s => {
                     return s.replace(/\s+/gm, ' ').replace(/\s*?\<\s*/gm, '<').replace(/\s*?\>/gm, '>');
                 });
+
+                // fix nested generics.
+                content = replaceCode(content, /(\< \<)|(\> \>)/gm, s => s.replace(/\s+/gm, ''));
 
                 // fix enums.
                 content = replaceCode(content, /(enum[^\{]+\{)((?:.*?\n)*?)(.*?\}$)/gm, (s, s1, s2, s3) => {

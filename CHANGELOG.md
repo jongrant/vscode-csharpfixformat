@@ -1,3 +1,6 @@
+* v0.0.74
+  * Fix nested generics issue.
+  * Fix parenthesis issue between logical / bits-shift operators like `t << (16 >> 2)`.
 * v0.0.73
   * Fix "goto" behaviour. **SHAME ON ME** for this, this operator should be banned 10 years ago...
 * v0.0.72
