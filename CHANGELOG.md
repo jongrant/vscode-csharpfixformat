@@ -1,3 +1,5 @@
+* v0.0.75
+  * Fix operator overloading detection.
 * v0.0.74
   * Fix nested generics issue.
   * Fix parenthesis issue between logical / bits-shift operators like `t << (16 >> 2)`.
