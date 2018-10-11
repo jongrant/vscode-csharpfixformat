@@ -1,3 +1,5 @@
+* v0.0.76
+  * Fix space after fat arrow.
 * v0.0.75
   * Fix operator overloading detection.
 * v0.0.74
