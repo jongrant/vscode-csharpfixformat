@@ -222,6 +222,9 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                     content = replaceCode(content, removeRegex, (s, s1) => `${s1}(`);
                 }
 
+                // fix fat arrows.
+                content = replaceCode(content, /=>([^ \t\n])/gm, (s, s1) => `=> ${s1}`);
+
                 // put else / catch expression force on new line with "styleNewLineElseCatch"=true.
                 if (options.styleNewLineElseCatch) {
                     content = replaceCode(content, /(^[ \t]*?)\} (else|catch)/gm, (s, s1, s2) => `${s1}}\n${s1}${s2}`);
