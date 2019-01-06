@@ -1002,13 +1002,13 @@ if (!Object.values) {
 
                 if (start_of_statement()) {
                     // The conditional starts the statement if appropriate.
-                    if (last_type === 'TK_RESERVED' && in_array(flags.last_text, ['var', 'let', 'const']) && current_token.type === 'TK_WORD') {
+                    if (last_type === 'TK_RESERVED' && in_array(flags.last_text, ['var', 'let', 'const', 'ref']) && current_token.type === 'TK_WORD') {
                         flags.declaration_statement = true;
                     }
                 } else if (current_token.wanted_newline && !is_expression(flags.mode) &&
                     (last_type !== 'TK_OPERATOR' || (flags.last_text === '--' || flags.last_text === '++')) &&
                     last_type !== 'TK_EQUALS' &&
-                    (opt.preserve_newlines || !(last_type === 'TK_RESERVED' && in_array(flags.last_text, ['var', 'let', 'const', 'set', 'get'])))) {
+                    (opt.preserve_newlines || !(last_type === 'TK_RESERVED' && in_array(flags.last_text, ['var', 'let', 'const', 'set', 'get', 'ref'])))) {
                     handle_whitespace_and_comments(current_token);
                     print_newline();
                 } else {
@@ -1170,7 +1170,7 @@ if (!Object.values) {
                         // no newline between 'return nnn'
                         output.space_before_token = true;
                     } else if (last_type !== 'TK_END_EXPR') {
-                        if ((last_type !== 'TK_START_EXPR' || !(current_token.type === 'TK_RESERVED' && in_array(current_token.text, ['var', 'let', 'const']))) && flags.last_text !== ':') {
+                        if ((last_type !== 'TK_START_EXPR' || !(current_token.type === 'TK_RESERVED' && in_array(current_token.text, ['var', 'let', 'const', 'ref']))) && flags.last_text !== ':') {
                             // no need to force newline on 'var': for (var x = 0...)
                             if (current_token.type === 'TK_RESERVED' && current_token.text === 'if' && flags.last_text === 'else') {
                                 // no newline for } else if {
@@ -1901,9 +1901,9 @@ if (!Object.values) {
                 '! %= &= *= ++ += , -- -= /= :: = => ^= |= ~ <<= >>='.split(' '));
 
             // words which should always start on new line.
-            this.line_starters = 'continue,try,throw,return,var,let,if,switch,case,for,foreach,while,break'.split(',');
+            this.line_starters = 'continue,try,throw,return,let,if,switch,case,for,foreach,while,break'.split(',');
             // Leopotam fix. "is", "out" were added. "default" and "const" moved from line_starters.
-            var reserved_words = this.line_starters.concat('do,in,out,of,else,get,set,new,catch,finally,typeof,sizeof,nameof,yield,async,await,from,as,is,default,const,goto'.split(','));
+            var reserved_words = this.line_starters.concat('do,in,out,of,else,get,set,new,catch,finally,typeof,sizeof,nameof,yield,async,await,from,as,is,default,const,goto,ref,var'.split(','));
 
             //  /* ... */ comment ends with nearest */ or end of file
             var block_comment_pattern = /([\s\S]*?)((?:\*\/)|$)/g;
