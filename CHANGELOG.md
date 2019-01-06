@@ -1,3 +1,5 @@
+* v0.0.77
+  * Fix "ref" prefix for C#7.x variable statements.
 * v0.0.76
   * Fix space after fat arrow.
 * v0.0.75
