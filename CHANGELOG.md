@@ -1,3 +1,5 @@
+* v0.0.78
+  * Fix "in" prefix for C#7.2 readonly reference parameters.
 * v0.0.77
   * Fix "ref" prefix for C#7.x variable statements.
 * v0.0.76
