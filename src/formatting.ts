@@ -229,6 +229,9 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 if (options.styleNewLineElseCatch) {
                     content = replaceCode(content, /(^[ \t]*?)\} (else|catch)/gm, (s, s1, s2) => `${s1}}\n${s1}${s2}`);
                 }
+
+                // fix "in" prefix.
+                content = replaceCode(content, /([(<]) in /gm, (s, s1) => `${s1}in `);
             }
 
             if (options.sortUsingsEnabled) {
