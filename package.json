@@ -6,10 +6,10 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.78",
+    "version": "0.0.79",
     "publisher": "Leopotam",
     "engines": {
-        "vscode": "^1.30.0"
+        "vscode": "^1.32.0"
     },
     "categories": [
         "Formatters",
@@ -171,11 +171,11 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^10.12.18",
-        "tslint": "^5.12.1",
-        "typescript": "^3.2.4",
-        "vsce": "^1.54.0",
-        "vscode": "^1.1.27"
+        "@types/node": "^10.12.30",
+        "tslint": "^5.13.1",
+        "typescript": "^3.3.3333",
+        "vsce": "^1.57.1",
+        "vscode": "^1.1.30"
     },
     "license": "MIT",
     "homepage": "https://github.com/Leopotam/vscode-csharpfixformat",

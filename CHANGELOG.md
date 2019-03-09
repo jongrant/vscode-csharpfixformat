@@ -1,3 +1,5 @@
+* v0.0.79
+  * Fix double quotes in verbatim strings.
 * v0.0.78
   * Fix "in" prefix for C#7.2 readonly reference parameters.
 * v0.0.77
