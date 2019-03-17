@@ -1,3 +1,5 @@
+* v0.0.80
+  * Fix destructors formatting.
 * v0.0.79
   * Fix double quotes in verbatim strings.
 * v0.0.78

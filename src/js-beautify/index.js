@@ -177,6 +177,8 @@ if (!Object.values) {
                 if (code < 97) return code === 95;
                 // 97 through 123 are lowercase letters.
                 if (code < 123) return true;
+                // '~' for destructors.
+                if (code == 126) return true;
                 return code >= 0xaa && nonASCIIidentifierStart.test(String.fromCharCode(code));
             };
 
