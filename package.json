@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.79",
+    "version": "0.0.80",
     "publisher": "Leopotam",
     "engines": {
         "vscode": "^1.32.0"
@@ -171,10 +171,10 @@
         "package": "node_modules/.bin/vsce package"
     },
     "devDependencies": {
-        "@types/node": "^10.12.30",
-        "tslint": "^5.13.1",
+        "@types/node": "^10.14.1",
+        "tslint": "^5.14.0",
         "typescript": "^3.3.3333",
-        "vsce": "^1.57.1",
+        "vsce": "^1.58.0",
         "vscode": "^1.1.30"
     },
     "license": "MIT",
