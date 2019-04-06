@@ -1,3 +1,5 @@
+* v0.0.81
+  * Upgrade to vscode v1.33 - support for builtin formatter selector.
 * v0.0.80
   * Fix destructors formatting.
 * v0.0.79

@@ -83,25 +83,6 @@ const getFormatOptions = (options?: vs.FormattingOptions): formatting.IFormatCon
 };
 
 export function activate(context: vs.ExtensionContext) {
-    const omnisharp = vs.extensions.getExtension('ms-vscode.csharp');
-    if (omnisharp) {
-        const cfg = vs.workspace.getConfiguration('csharp');
-        const keyName = 'format.enable';
-        const omnisharpUpdated = cfg.has(keyName);
-        if (omnisharpUpdated) {
-            if (cfg.get<boolean>(keyName, true)) {
-                vs.window.showWarningMessage('For properly code formatting, omnisharp format provider should be disabled: "csharp.format.enable=false"', 'Fix and reload')
-                    .then((choice: string | undefined) => {
-                        if (choice) {
-                            cfg.update(keyName, false, vs.ConfigurationTarget.Global);
-                            vs.commands.executeCommand('workbench.action.reloadWindow');
-                        }
-                    });
-            }
-        } else {
-            vs.window.showErrorMessage('Installed omnisharp version not supported (conflict of format providers) and should be updated to >= 1.13.');
-        }
-    }
     const formatProvider = new FormatProvider();
     context.subscriptions.push(vs.languages.registerDocumentRangeFormattingEditProvider('csharp', formatProvider));
     context.subscriptions.push(vs.languages.registerOnTypeFormattingEditProvider('csharp', formatProvider, '}', ';'));
