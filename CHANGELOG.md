@@ -1,5 +1,6 @@
 * v0.0.82
   * Fix enums with trailing semicolon.
+  * Info about default settings at README.
 * v0.0.81
   * Upgrade to vscode v1.33 - support for builtin formatter selector.
 * v0.0.80
