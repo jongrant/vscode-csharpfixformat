@@ -102,6 +102,9 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 // fix attributes indentation.
                 content = replaceCode(content, /\}\s*?\n\s*?\[/gm, s => `}\n\n[`);
 
+                // fix enums with trailing semicolon.
+                content = replaceCode(content, /(enum[^\{]*?\{[^\}]*?\})[ \t]*;/gm, (s, s1) => s1);
+
                 content = beautify(content, beautifyOptions);
 
                 // restore masked preprocessor directives.
