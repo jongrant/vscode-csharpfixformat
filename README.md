@@ -11,6 +11,8 @@ This extension helps to format C# code. When OmniSharp will support all features
 
 > If you need full format support of last C# version - better to write issue about proper formatting at [Omnisharp extension repo](https://github.com/OmniSharp/omnisharp-vscode/issues).
 
+> **Important!** Default settings not equals to VS C# default formatting, if you dont want to waste your time to tune formatting rules for your own codestyle - **dont install this extension!**
+
 ## Dependencies
 This extension not dependent on any 3dparty extensions (even omnisharp) and works as standalone formatting solution for current C#-file.
 
