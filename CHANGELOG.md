@@ -1,3 +1,5 @@
+* v0.0.83
+  * Fix enums detection.
 * v0.0.82
   * Fix enums with trailing semicolon.
   * Info about default settings at README.

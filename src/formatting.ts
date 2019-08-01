@@ -103,7 +103,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = replaceCode(content, /\}\s*?\n\s*?\[/gm, s => `}\n\n[`);
 
                 // fix enums with trailing semicolon.
-                content = replaceCode(content, /(enum[^\{]*?\{[^\}]*?\})[ \t]*;/gm, (s, s1) => s1);
+                content = replaceCode(content, /(enum[ \t][^\{]*?\{[^\}]*?\})[ \t]*;/gm, (s, s1) => s1);
 
                 content = beautify(content, beautifyOptions);
 
@@ -130,7 +130,7 @@ export const process = (content: string, options: IFormatConfig): Promise<string
                 content = replaceCode(content, /(\< \<)|(\> \>)/gm, s => s.replace(/\s+/gm, ''));
 
                 // fix enums.
-                content = replaceCode(content, /(enum[^\{]+\{)((?:.*?\n)*?)(.*?\}$)/gm, (s, s1, s2, s3) => {
+                content = replaceCode(content, /(enum[ \t][^\{]*?\{)((?:.*?\n)*?)(.*?\}$)/gm, (s, s1, s2, s3) => {
                     const indentMatch = /^[ \t]+/gm.exec(s2);
                     if (indentMatch == null || indentMatch.length === 0) {
                         return s;
