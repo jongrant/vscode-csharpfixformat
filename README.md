@@ -4,7 +4,7 @@
 
 
 # CSharpSortUsings for Visual Studio Code
-This extension helps to format C# usings statements.
+This extension helps to format C# using statements.
 
 ## Features
   * Sorts usings in alphabetical order. Doubles will be removed automatically.
