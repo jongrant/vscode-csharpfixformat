@@ -11,7 +11,6 @@ This extension helps to format C# using statements.
   * Triggered via context menu or "sort usings" command.
 
 ## Extension Settings
-* `sort.usings.enabled`: Should usings be sorted or not. True by default.
 * `sort.usings.order`: Put namespaces in proper order. Values should be splitted with space. "System" by default.
 * `sort.usings.splitGroups`: Insert blank line between using blocks grouped by first part of namespace. True by default.
 
