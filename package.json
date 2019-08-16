@@ -5,8 +5,8 @@
     "icons": {
         "default": "icon-128.png"
     },
-    "icon": "icon-128.png",
-    "version": "0.0.2",
+    "icon": "icon-128@2x.png",
+    "version": "0.0.3",
     "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
