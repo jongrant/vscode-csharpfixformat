@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
@@ -36,7 +36,8 @@
             "editor/context": [
                 {
                     "command": "csharpsortusings.sortUsings",
-                    "group": "1_modification"
+                    "group": "1_modification",
+                    "when": "editorLangId == 'csharp' && !editorReadonly"
                 }
             ]
         },
