@@ -1,13 +1,13 @@
 {
-    "name": "csharpfixformat",
-    "displayName": "C# FixFormat",
-    "description": "Fix format of usings / indents / braces / empty lines",
+    "name": "csharpsortusings",
+    "displayName": "C# Sort Usings",
+    "description": "Sort using statements",
     "icons": {
         "default": "icon-128.png"
     },
     "icon": "icon-128.png",
-    "version": "0.0.83",
-    "publisher": "Leopotam",
+    "version": "0.0.1",
+    "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
     },
@@ -18,141 +18,40 @@
         "Other"
     ],
     "activationEvents": [
-        "onLanguage:csharp",
-        "onCommand:csharpfixformat.formatFolder"
+        "onCommand:csharpsortusings.sortUsings"
     ],
     "author": {
-        "name": "Leopotam",
-        "email": "leopotam@gmail.com"
+        "name": "Jon Grant",
+        "email": "jongrant@gmail.com"
     },
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
             {
-                "command": "csharpfixformat.formatFolder",
-                "title": "C#FixFormat: format C# files"
+                "command": "csharpsortusings.sortUsings",
+                "title": "Sort Usings"
             }
         ],
         "menus": {
-            "explorer/context": [
+            "editor/context": [
                 {
-                    "when": "explorerResourceIsFolder",
-                    "command": "csharpfixformat.formatFolder"
+                    "command": "csharpsortusings.sortUsings",
+                    "group": "1_modification"
                 }
             ]
         },
         "configuration": {
-            "title": "C# FixFormat configuration",
+            "title": "C# Sort Usings configuration",
             "properties": {
-                "csharpfixformat.sort.usings.enabled": {
+                "csharpsortusings.sort.usings.order": {
+                    "type": "string",
+                    "default": "System Microsoft",
+                    "description": "Put namespaces in proper order. Values should be split with space."
+                },
+                "csharpsortusings.sort.usings.splitGroups": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Should usings be sorted or not."
-                },
-                "csharpfixformat.sort.usings.order": {
-                    "type": "string",
-                    "default": "System",
-                    "description": "Put namespaces in proper order. Values should be splitted with space."
-                },
-                "csharpfixformat.sort.usings.splitGroups": {
-                    "type": "boolean",
-                    "default": false,
                     "description": "Insert blank line between using blocks grouped by first part of namespace."
-                },
-                "csharpfixformat.style.enabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Enable code reformat with style options."
-                },
-                "csharpfixformat.style.braces.onSameLine": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Should open braces be kept on expression line (K&R style) or on new line."
-                },
-                "csharpfixformat.style.braces.allowInlines": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Allow expressions inside braces at one line."
-                },
-                "csharpfixformat.style.indent.preprocessorIgnored": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Should preprocessor directives ignore indentation or use it."
-                },
-                "csharpfixformat.style.indent.regionIgnored": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Should #region / #endregion directives ignore indentation or use it."
-                },
-                "csharpfixformat.style.indent.switchCaseIgnored": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Should switch cases ignore indentation or use it."
-                },
-                "csharpfixformat.style.newline.atEnd": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Force adds new empty line at end."
-                },
-                "csharpfixformat.style.newline.elseCatch": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Force places else / catch expression to new line."
-                },
-                "csharpfixformat.style.newline.maxAmount": {
-                    "type": "number",
-                    "default": 2,
-                    "description": "Amount of new line (\\n) symbols allowed in row. 1 means no blank lines. Use 0 for disable."
-                },
-                "csharpfixformat.style.operators.onSameLine": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Should operators be kept on expression line or on new line for multilined expressions."
-                },
-                "csharpfixformat.style.spaces.beforeParenthesis": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Space before '(' - opening parenthesis."
-                },
-                "csharpfixformat.style.spaces.afterParenthesis": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Space after ')' - closing parenthesis."
-                },
-                "csharpfixformat.style.spaces.beforeIndexerBracket": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Override spaces.beforeBracket rule for indexer sequence 'this['."
-                },
-                "csharpfixformat.style.spaces.beforeBracket": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Space before '[' - opening bracket."
-                },
-                "csharpfixformat.style.spaces.afterBracket": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Space after ']' - closing bracket."
-                },
-                "csharpfixformat.style.spaces.insideEmptyParenthis": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Space inside '()' - empty parenthis."
-                },
-                "csharpfixformat.style.spaces.insideEmptyBraces": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Space inside '{}' - empty braces."
-                },
-                "csharpfixformat.style.spaces.insideEmptyBrackets": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Space inside '[]' - empty brackets."
-                },
-                "csharpfixformat.style.spaces.removeAfterCommandBeforeParenthesis": {
-                    "type": "string",
-                    "default": "",
-                    "description": "Remove spaces after specified command and before (. Commands should be splitted with space."
                 }
             }
         }
@@ -178,13 +77,13 @@
         "vscode": "^1.1.35"
     },
     "license": "MIT",
-    "homepage": "https://github.com/Leopotam/vscode-csharpfixformat",
+    "homepage": "https://github.com/jongrant/vscode-csharpsortusings",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Leopotam/vscode-csharpfixformat"
+        "url": "https://github.com/jongrant/vscode-csharpsortusings"
     },
     "bugs": {
-        "url": "https://github.com/Leopotam/vscode-csharpfixformat/issues"
+        "url": "https://github.com/jongrant/vscode-csharpsortusings/issues"
     },
     "dependencies": {}
 }
