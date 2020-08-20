@@ -20,4 +20,15 @@ describe('Sorting', function(){
         const actual = formatting.process(testInput, getFormatOptions());
         expect(actual.replace(/(\r\n|\n|\r)/gm, "").trim()).toBe(expected.replace(/(\r\n|\n|\r)/gm, "").trim());
     })
+
+    it('Sorts short strings first - even when the line starts with whitespace', function() {
+        const testInput =
+            ' using System.Text;' + EOL +
+            ' using System;' + EOL;
+        const expected =
+            ' using System;' + EOL +
+            ' using System.Text;' + EOL;
+        const actual = formatting.process(testInput, getFormatOptions());
+        expect(actual.replace(/(\r\n|\n|\r)/gm, "").trim()).toBe(expected.replace(/(\r\n|\n|\r)/gm, "").trim());
+    })
 });
