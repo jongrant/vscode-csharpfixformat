@@ -67,6 +67,7 @@
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "watch": "node_modules/.bin/tsc -w -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
         "package": "node_modules/.bin/vsce package",
         "test": "jest",
         "coverage": "jest --coverage"
@@ -79,6 +80,7 @@
         "ts-jest": "^26.2.0",
         "tslint": "^6.1.3",
         "typescript": "^3.9.7",
+        "vscode": "^1.1.37",
         "vscode-test": "^1.4.0"
     },
     "license": "MIT",
