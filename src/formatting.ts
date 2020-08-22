@@ -35,14 +35,14 @@ const getNamespaceOrder = (ns: string, orderedNames: string[]): number => {
 
 export const process = (content: string, options: IFormatConfig): string => {
     try {
-        const trimSemiColon = /^\s+|;\s*$/;
+        const trimSemiColon = /;$/;
         content = replaceCode(content, /(\s*using\s+[.\w]+;)+/gm, rawBlock => {
             const items = rawBlock.split('\n').filter((l) => l && l.trim().length > 0);
             items.sort((a: string, b: string) => {
                 let res = 0;
                 // because we keep lines with indentation and semicolons.
-                a = a.replace(trimSemiColon, '');
-                b = b.replace(trimSemiColon, '');
+                a = a.trim().replace(trimSemiColon, '');
+                b = b.trim().replace(trimSemiColon, '');
                 if (options.sortUsingsOrder) {
                     const ns = options.sortUsingsOrder.split(' ');
                     res -= getNamespaceOrder(a.substr(6), ns);
