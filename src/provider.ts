@@ -8,7 +8,7 @@ const getFormatOptions = (): formatting.IFormatConfig => {
 
     return {
         sortUsingsEnabled: cfg.get<boolean>('sort.usings.enabled', true),
-        sortUsingsOrder: cfg.get<string>('sort.usings.order', 'System'),
+        sortUsingsOrder: cfg.get<string>('sort.usings.order', 'System Microsoft'),
         sortUsingsSplitGroups: cfg.get<boolean>('sort.usings.splitGroups', true)
     };
 };
