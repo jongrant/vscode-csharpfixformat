@@ -37,7 +37,7 @@ export const process = (content: string, options: IFormatConfig): string => {
     try {
         const trimSemiColon = /^\s+|;\s*$/;
         content = replaceCode(content, /(\s*using\s+[.\w]+;)+/gm, rawBlock => {
-            const items = rawBlock.split('\n').filter((l) => l && l.trim().length > 0);
+            const items = rawBlock.replace(/\r/gm, '').split('\n').filter((l) => l && l.trim().length > 0);
             items.sort((a: string, b: string) => {
                 let res = 0;
                 // because we keep lines with indentation and semicolons.
