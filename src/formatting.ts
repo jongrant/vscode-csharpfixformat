@@ -37,12 +37,15 @@ export const process = (content: string, options: IFormatConfig): string => {
     try {
         const trimSemiColon = /^\s+|;\s*$/;
 
-        content = replaceCode(content, /(^\s*using\s+[\w\s.=]+;\s*$)+/gm, rawBlock => {
+        content = replaceCode(content, /(^\s*using\s+[\w\s.=]+;\s*$)+\s*/gm, rawBlock => {
             var items = rawBlock.split(/[\r\n]+/).filter(l => l && l.trim().length > 0);
 
             // separate out the type definitions
             var defs = items.filter(l => l.indexOf('=') != -1);
             items = items.filter(l => l.indexOf('=') == -1);
+
+            // remove any duplicates
+            items = items.filter((v, i, a) => a.indexOf(v) === i);
 
             items.sort((a: string, b: string) => {
                 let res = 0;
