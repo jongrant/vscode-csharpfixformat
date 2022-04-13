@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128@2x.png",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
