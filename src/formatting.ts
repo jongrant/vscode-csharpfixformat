@@ -36,13 +36,21 @@ const getNamespaceOrder = (ns: string, orderedNames: string[]): number => {
 export const process = (content: string, options: IFormatConfig): string => {
     try {
         const trimSemiColon = /^\s+|;\s*$/;
-        content = replaceCode(content, /(\s*using\s+[.\w]+;)+/gm, rawBlock => {
-            const items = rawBlock.split('\n').filter((l) => l && l.trim().length > 0);
+
+        content = replaceCode(content, /(\s*using\s+[^;]+;\s*)+/gm, rawBlock => {
+            const items = rawBlock.split(/[\r\n]+/).filter((l) => l && l.trim().length > 0);
             items.sort((a: string, b: string) => {
                 let res = 0;
                 // because we keep lines with indentation and semicolons.
                 a = a.replace(trimSemiColon, '');
                 b = b.replace(trimSemiColon, '');
+                
+                // handle using type name definitions
+                let aIsDef = (a.indexOf('=') != -1);
+                let bIsDef = (b.indexOf('=') != -1);
+                if (aIsDef && !bIsDef) return 1;
+                else if (!aIsDef && bIsDef) return -1;
+
                 if (options.sortUsingsOrder) {
                     const ns = options.sortUsingsOrder.split(' ');
                     res -= getNamespaceOrder(a.substr(6), ns);
@@ -51,6 +59,7 @@ export const process = (content: string, options: IFormatConfig): string => {
                         return res;
                     }
                 }
+
                 for (let i = 0; i < a.length; i++) {
                     const lhs = a[i].toLowerCase();
                     const rhs = b[i] ? b[i].toLowerCase() : b[i];
@@ -66,6 +75,7 @@ export const process = (content: string, options: IFormatConfig): string => {
                 }
                 return res === 0 && b.length > a.length ? -1 : res;
             });
+
             if (options.sortUsingsSplitGroups) {
                 let i = items.length - 1;
                 const baseNS = /\s*using\s+(\w+).*/;
@@ -79,13 +89,10 @@ export const process = (content: string, options: IFormatConfig): string => {
                     }
                 }
             }
-            for (let i = 1; i >= 0; i--) {
-                if (rawBlock[i] === '\n') {
-                    items.unshift('');
-                }
-            }
-            return items.join('\n');
+            
+            return items.join('\n') + '\n\n';
         });
+        
         return content;
     }
     catch (ex) {

@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128@2x.png",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
@@ -66,9 +66,9 @@
     ],
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
-        "watch": "node_modules/.bin/tsc -w -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "package": "node_modules/.bin/vsce package"
+        "watch": ".\\node_modules\\.bin\\tsc -w -p ./",
+        "postinstall": "node .\\node_modules\\vscode\\bin\\install",
+        "package": ".\\node_modules\\.bin\\vsce package"
     },
     "devDependencies": {
         "@types/node": "^12.6.8",
@@ -85,6 +85,5 @@
     },
     "bugs": {
         "url": "https://github.com/jongrant/vscode-csharpsortusings/issues"
-    },
-    "dependencies": {}
+    }
 }
