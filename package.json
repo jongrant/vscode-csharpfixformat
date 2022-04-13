@@ -6,7 +6,7 @@
         "default": "icon-128.png"
     },
     "icon": "icon-128@2x.png",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "jongrant",
     "engines": {
         "vscode": "^1.36.0"
@@ -74,7 +74,7 @@
         "@types/node": "^12.6.8",
         "tslint": "^5.18.0",
         "typescript": "^3.5.3",
-        "vsce": "^1.66.0",
+        "vsce": "^2.7",
         "vscode": "^1.1.35"
     },
     "license": "MIT",

@@ -37,19 +37,19 @@ export const process = (content: string, options: IFormatConfig): string => {
     try {
         const trimSemiColon = /^\s+|;\s*$/;
 
-        content = replaceCode(content, /(\s*using\s+[^;]+;\s*)+/gm, rawBlock => {
-            const items = rawBlock.split(/[\r\n]+/).filter((l) => l && l.trim().length > 0);
+        content = replaceCode(content, /^(\s*using\s+[^;]+;\s*)+/gm, rawBlock => {
+            var items = rawBlock.split(/[\r\n]+/).filter(l => l && l.trim().length > 0);
+
+            // separate out the type definitions
+            var defs = items.filter(l => l.indexOf('=') != -1);
+            items = items.filter(l => l.indexOf('=') == -1);
+
             items.sort((a: string, b: string) => {
                 let res = 0;
+                
                 // because we keep lines with indentation and semicolons.
                 a = a.replace(trimSemiColon, '');
                 b = b.replace(trimSemiColon, '');
-                
-                // handle using type name definitions
-                let aIsDef = (a.indexOf('=') != -1);
-                let bIsDef = (b.indexOf('=') != -1);
-                if (aIsDef && !bIsDef) return 1;
-                else if (!aIsDef && bIsDef) return -1;
 
                 if (options.sortUsingsOrder) {
                     const ns = options.sortUsingsOrder.split(' ');
@@ -90,7 +90,11 @@ export const process = (content: string, options: IFormatConfig): string => {
                 }
             }
             
-            return items.join('\n') + '\n\n';
+            // build a result
+            var result = '';
+            if (items.length > 0) result += items.join('\n') + '\n\n';
+            if (defs.length > 0) result += defs.join('\n') + '\n\n';
+            return result;
         });
         
         return content;
